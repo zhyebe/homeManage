@@ -12,11 +12,11 @@ module.exports = {
     },
 
     mysql: {
-        host     : '127.0.0.1',
-        user     : 'root',
-        password : 'zhangyong',
-        port: '3306',
-        database: 'healthy_manage',
+        host     : '192.168.1.233',
+        user     : '5fec19ba692c4',
+        password : '62d5992dff834',
+        port: '30084',
+        database: '5fec19ba692c4',
     },
     ROUTER_URL:[
         {routerKey:'/',routerValue:'./router/index'},
