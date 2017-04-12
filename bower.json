@@ -1,10 +1,10 @@
 {
-  "name": "projdemo",
-  "version": "0.0.0",
+  "name": "homeManage",
+  "version": "0.0.1",
   "authors": [
-    "xvcuii <xvcuii@icloud.com>"
+    "zhyebe"
   ],
-  "description": "project demo",
+  "description": "home menage",
   "moduleType": [
     "node"
   ],
@@ -19,5 +19,9 @@
   "devDependencies": {
     "bootstrap": "~3.3.6",
     "backbone": "~1.2.3"
+  },
+  "engines":{
+    "node":"5.2.x",
+    "npm":"3.3.x"
   }
 }
