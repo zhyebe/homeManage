@@ -1,0 +1,12 @@
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{background: rgba(194, 194, 194, 0.3);}
+.input-group .input-group-addon{background: rgba(0,0,0,.3); border:1px solid #4d5170; border-left:none}
+.glyphicon-calendar{color:#fff;}
+.dropdown-menu{background-color: #1e2b41; color:#fff; border:1px solid #5c66b3;}
+.datetimepicker table tr td.minute:hover{background:rgba(171,171,255,.1);cursor:pointer}.datetimepicker table tr td.hour:hover{background:rgba(171,171,255,.1);cursor:pointer}.datetimepicker table tr td.day:hover{background:rgba(171,171,255,.1);cursor:pointer}
+.datetimepicker table tr td span:hover {
+    background:rgba(171,171,255,.1);
+}
+.datetimepicker thead tr:first-child th:hover,
+.datetimepicker tfoot tr:first-child th:hover {
+    background:rgba(171,171,255,.1);
+}

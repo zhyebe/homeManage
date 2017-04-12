@@ -1,0 +1,139 @@
+.my-container {
+    height: 500px;
+    margin: 90px auto;
+}
+.photo-wrap {
+    perspective: 800px;
+}
+.container {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    background: #EACAB4;
+}
+.active-flash{
+    animation: rotateY360 25s 0s ease-in-out infinite;
+}
+.img {
+    width: 200px;
+    height: 118px;
+    line-height: 118px;
+    text-align: center;
+    position: absolute;
+    top: 160px;
+    left: 300px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset;
+    background: #F4F5F9;
+}
+@keyframes rotateY360 {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+.banner_left_button {
+    left: 225px;
+}
+.banner_button {
+    display: inline-block;
+    width: 45px;
+    z-index: 99;
+    height: 59px;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    text-align: center;
+    transition: all 0.5s;
+    background: #b5947d;
+    opacity: 0;
+}
+a {
+    color: #434649;
+    text-decoration: none;
+}
+a, button {
+    outline: none;
+    border: 0;
+}
+.banner_box:hover .banner_button{ opacity: 1; }
+.banner_button:hover{ background: #886E5D;}
+.banner_left_button{ left: 245px;}
+.banner_right_button{ right: 244px;}
+.banner_left_button i,.banner_right_button i{ width: 13px; height: 26px;display: inline-block; margin-top: 17px; }
+.banner_left_button i{ background-position: -72px 0;}
+.banner_right_button i{ background-position: -90px 0;}
+
+.main_icon{ background-image:url(/common/images/main_icon.png); background-repeat:no-repeat;}
+.fl{
+    float: left;
+}
+.index_course_list .three_list {
+    width: 845.5px;
+    height: 472px;
+}
+.three_list{
+    float: right;
+    position: absolute;
+    left: 24%;
+}
+ul {
+    list-style: none;
+}
+.three_list li:nth-child(1), .three_list li:nth-child(2), .three_list li:nth-child(3) {
+    margin-bottom: 24px;
+}
+.index_course_list ul li {
+    transition: all 0.5s;
+    float: left;
+    width: 225px;
+    height: 224px;
+    margin-left: 23.5px;
+    overflow: hidden;
+}
+.index_course_list ul li > a {
+    display: block;
+    width: 225px;
+    height: 154px;
+    overflow: hidden;
+}
+a {
+    color: #434649;
+}
+a, button {
+    outline: none;
+    border: 0;
+}
+.course_details {
+    background: #fff;
+    height: 65px;
+    padding: 10px;
+}
+.course_details a {
+    display: block;
+    height: 24px;
+}
+.course_details a, .ranking_title a {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+a {
+    color: #434649;
+}
+.course_details span {
+    font-size: 18px;
+    color: #A07955;
+}
+.video_list_all .play_tb i {
+    position: absolute;
+    left: 19px;
+    top: 209px;
+    width: 40px;
+    height: 27px;
+    display: inline-block;
+    background-position: -45px -221px;
+}

@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#myController{list-style:none; height:32px; line-height:32px; padding-left:20px; background:url(images/title_bg.gif) repeat-x left bottom; font-weight:bold; font-size:14px; white-space:nowrap}
+#myController li{float:left; width:80px; text-align:center; cursor:pointer; color:#666}
+#myController li.jFlowSelected {background:url(images/cur_bg.gif) no-repeat;}
+.jFlowPrev,.jFlowNext{display:none}
+.clear{clear:both}
+img{border:none}
+
+
+#myController1{height:32px; line-height:32px; padding-right:20px; background:#333; font-weight:bold; font-size:14px; text-align:right; white-space:nowrap; z-index:1001; position:relative; margin-top:-32px; filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5;}
+#myController1 span{ padding:0 4px; text-align:center; cursor:pointer; color:#fff}
+#myController1 span.jFlowSelected1 {background:#d3d3d3; color:#333}
+
+.server{float:left; width:334px; height:100px; margin:10px 0 4px 4px}
+.ser_img{float:left; width:118px;}
+.ser_img img{width:100px; height:72px; margin:2px; padding:2px;}
+.ser_txt{float:right; width:210px}
+.ser_txt h3{height:24px; line-height:24px; font-size:12px}
+.ser_txt p{line-height:20px}
+.case{float:left; width:210px; height:102px; margin:10px 0 2px 10px; text-align:center}
+.case img{width:200px; height:102px}
+.blog{list-style:none; margin:8px 2px 2px 10px}
+.blog li{float:left; width:330px; height:24px; line-height:24px; background:url(images/icon.gif) no-repeat 2px 5px; text-indent:1.5em}
+
+
+#myController2{display:none; position:absolute; z-index:1002}
+.arrL{position:absolute; z-index:1008; width:30px; height:40px; margin-top:-212px; margin-left:30px; background:url(images/left.png) no-repeat; cursor:pointer; zoom:0.6}
+.arrR{position:absolute; z-index:1009; width:30px; height:40px; margin-top:-212px;
+    margin-left: calc(100% - 60px);
+    margin-left:-moz-calc(100% - 60px);
+    margin-left:-webkit-calc(100% - 60px);
+    background:url(images/right.png) no-repeat; cursor:pointer; zoom:0.6}
+
+.page_title{width:300px; height:30px; margin:10px auto 0 auto; font-weight:bold;}
+
+
+#myController3{height:42px; line-height:32px;  z-index:1003; position:absolute; margin-left:260px}
+#myController3 span{ padding:3px 8px; text-align:center; cursor:pointer; background:url(images/arr_icon.gif) no-repeat}
+#myController3 span.prev,#myController3 span.next{background:none}
+#myController3 span.jFlowControl3{background-position:4px -2px}
+#myController3 span.jFlowSelected3 {background-position:4px -25px}
+
+.demo_m{width:300px; height:138px; border:1px solid #acc6e9; background:#fff; margin:4px auto 20px auto; overflow:hidden}
+#myController4{height:42px; line-height:32px;  z-index:1005; position:absolute; margin-top:-30px; margin-left:540px}
+#myController4 span{ padding:3px 9px; text-align:center; cursor:pointer; background:url(images/arr_icon.gif) no-repeat}
+#myController4 span.j_prev{background-position:4px -81px}
+#myController4 span.j_next{background-position:4px -54px}
+#myController4 span.jFlowControl4{background-position:4px -2px}
+#myController4 span.jFlowSelected4 {background-position:4px -25px}
+.pro{float:left; width:210px; height:132px; margin:10px 0 6px 10px; text-align:center}
+.pro img{width:200px; height:102px}
+.pro a:hover{text-decoration:none; color:#f60}
+
+.demo_u{width:300px; height:320px; border:1px solid #d3d3d3; margin:4px auto 20px auto; overflow:hidden}
+#slides5{float:left; width:370px}
+#myController5{position:absolute; margin-left:386px; margin-top:8px; padding-top:12px; z-index:1008; width:292px; height:310px; background:url(images/banner_nav_bg.gif) no-repeat top 20px}
+#myController5 li.jFlowControl5{height:48px; line-height:48px; padding-left:36px; color:#979797; font-size:18px; font-weight:bold; cursor:pointer}
+#myController5 li.jFlowSelected5{background:url(images/banner_cur.gif) no-repeat}
+#myController5 li#slide_last{background:none}

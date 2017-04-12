@@ -1,0 +1,185 @@
+/**
+ * Created by zhangyong on 2017/03/10.
+ */
+var express = require('express'),
+    media = require('../../models/admin/media.js'),
+    router = express.Router();
+
+router.post('/getPhotos',function(req,res){
+    media.getPhotos(function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getPhoto',function(req,res){
+    media.getPhoto(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getPhotoPage',function(req,res){
+    media.getPhotoPage(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getPhotoCount',function(req,res){
+    media.getPhotoCount(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getPhotoAll',function(req,res){
+    media.getPhotoAll(req.body,function(err,result){
+        if(err){
+            var tmp = {
+                "draw": req.body.draw,
+                "recordsTotal": 0,
+                "recordsFiltered": 0,
+                "data": []
+            }
+            res.send(tmp);
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/uploadSave',function(req,res){
+    media.uploadSave(req.body,function(err,result){
+        if(err){
+            res.send({error:'Err'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/deletePhoto',function(req,res){
+    media.deletePhoto(req.body,function(err,result){
+        if(err){
+            res.send({error:'Err'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getVideos',function(req,res){
+    media.getVideos(function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getVideo',function(req,res){
+    media.getVideo(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getVideoPage',function(req,res){
+    media.getVideoPage(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getVideoCount',function(req,res){
+    media.getVideoCount(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getVideoAll',function(req,res){
+    media.getVideoAll(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/uploadVideoSave',function(req,res){
+    media.uploadVideoSave(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/deleteVideo',function(req,res){
+    media.deleteVideo(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/checkPhotos',function(req,res){
+    media.checkPhotos(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/checkTypes',function(req,res){
+    media.checkTypes(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/checkVideos',function(req,res){
+    media.checkVideos(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/uploadSaveCover',function(req,res){
+    media.uploadSaveCover(req.body,function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+router.post('/getPhotoTypes',function(req,res){
+    media.getPhotoTypes(function(err,result){
+        if(err){
+            res.send({error:'ERR'});
+        }else{
+            res.send(result);
+        }
+    });
+});
+module.exports = router;

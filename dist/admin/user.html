@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="/utils/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/metronic/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/utils/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/utils/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/admin/css/file.css">
+    <link href="/admin/css/dateTime.css" rel="stylesheet" type="text/css"/>
+    <link href="/common/css/dateTime.css" rel="stylesheet" type="text/css">
+    <link href="/utils/imageviewer/dist/viewer.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        body{background: #F4F5F9;font-family: '微软雅黑';padding: 15px 10px;overflow: hidden;}
+        .content-heard{background-color: #9D9E9E;padding: 10px 20px;margin-bottom: 10px;margin-left: -10px;font-size: 16px;  }
+        .footer{text-align: center;  font-size: 14px;  padding: 6px;  background-color: rgba(221, 221, 221, 0.51);  position: fixed;  bottom: -10px;  width: 101%;  }
+        .marg_span_input{  margin-top:15px;  }
+        .span_width{  width: 10.5%;  }
+        .span_right_width{width: 7.34%;  }
+        .input_width{width: 23.84%;  }
+        .line-content{background: #CFCFCF;margin: 30px;height: 30px;width:100%;margin-left:0;line-height: 30px;  }
+        .line-content-in{background: #F4F5F9;width: 170px;margin: 10px auto; margin-left: -26px; }
+        .line-content-in-a{padding: 5px 30px;color:#000;text-decoration:none;font-size:16px;margin-left: 25px;background: darkgrey;}
+        .line-content-in-a:hover{
+            text-decoration:none;
+            color:#000;
+        }
+        .ctrl-active{
+            display: none;
+        }
+        .butt-sub{
+            float: right;
+            position: relative;
+            right: 6.9%;
+            top: 17px;
+            width: 8%;
+        }
+    </style>
+</head>
+<body>
+<div class="content-heard">
+    <span>[后台管理]</span>
+    <span>&gt;</span>
+    <span>[人员信息管理]</span>
+    <span>&gt;</span>
+    <span>[用户信息]</span>
+</div>
+<form class="form-horizontal" id="user_form" role="form">
+        <div id="first_group_headimg" class="form-group" style="border-bottom: 3px solid #CFCFCF;">
+            <!--第一行start-->
+            <label class="col-sm-1 control-label">头像</label>
+            <img id="head_img" style="float: left;cursor: pointer;" <$if(user.head_url&&user.head_url!=''){$>src="<$=user.head_url$>"<$}else{$>src="/admin/images/home.png"<$}$> width="150" height="180">
+            <div class="col-sm-3 file-uploader-wrap" style="float: left;">
+                <input type="file" class="file-uploader form-control no-active" name="uploadDataField" id="FileUploader"/>
+                <div class="file-uploader-wrap-fake">
+                    <input type="text"  value="<$=user.head_url$>" name="head_url" id="PathDisplayer" style="width: 187%" placeholder="上传头像" class="input-text form-control" disabled />
+                    <a href="javascript:void(0)" class="link-btn" >选择文件</a>
+                </div>
+            </div>
+            <label class="col-sm-2 control-label" for="code_no">编号</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="code_no" name="id" value="<$=user.id$>" type="text" disabled placeholder="自动生成"/>
+            </div>
+            <!--第一行end-->
+            <!--第二行start-->
+            <label class="col-sm-1 control-label marg_span_input span_width" for="real_name">姓名</label>
+            <div class="col-sm-4 marg_span_input input_width">
+                <input class="form-control no-active" id="real_name" name="real_name" value="<$=user.real_name$>" type="text" placeholder="输入姓名"/>
+            </div>
+            <label class="col-sm-1 control-label marg_span_input span_right_width"  for="age">年龄</label>
+            <div class="col-sm-4 marg_span_input">
+                <input class="form-control no-active" id="age" value="<$=user.age$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="age" type="text" placeholder="输入年龄"/>
+            </div>
+            <!--第二行end-->
+            <!--第三行start-->
+            <span class="col-sm-1 control-label marg_span_input span_width">生日</span>
+            <div class="col-sm-4 marg_span_input input_width" >
+                <div id="birth_day" class="input-group date form_date" data-date="">
+                    <input id="birthday" name="birthday" value="<$=user.birthday$>" style="width: 206%;" placeholder="请选择日期" class="laydate-icon no-active" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                </div>
+            </div>
+            <label class="col-sm-1 control-label marg_span_input span_right_width" for="level">级别</label>
+            <div class="col-sm-4 marg_span_input">
+                <input class="form-control" id="level" name="level" value="<$=user.level$>" disabled type="text" placeholder="级别"/>
+            </div>
+            <!--第三行end-->
+            <!--第四行start-->
+            <span class="col-sm-1 control-label marg_span_input span_width">更新时间</span>
+            <div class="col-sm-4 marg_span_input input_width">
+                <div id="up_date" class="input-group date form_date" data-date="">
+                    <input id="update_time" name="update_time" value="<$=user.update_time$>" style="width: 206%;" placeholder="请选择日期" class="laydate-icon no-active" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                </div>
+                <!--<div class="input-append date form_up_datetime clearfix" >-->
+                <!--<input id="update_time" name="update_time"disabled class="inp-time form-control" size="16" type="text" placeholder="请选择" value="" readonly>-->
+                <!--<div class="rghicon"><span class="add-on" ><i class="fa fa-calendar icg"></i></span></div>-->
+                <!--</div>-->
+            </div>
+            <label class="col-sm-1 control-label marg_span_input span_right_width" for="status">状态</label>
+            <div class="col-sm-4 marg_span_input" >
+                <input class="form-control" id="status" value="<$=user.status$>" disabled onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" name="status" type="text" placeholder="状态"/>
+            </div>
+            <!--第四行end-->
+            <!--第五行start-->
+            <div class="col-sm-1 butt-sub">
+                <input class="form-control btn btn-default" id="edit_user" type="button" value="修改"/>
+            </div>
+            <div class="col-sm-1 butt-sub ctrl-active">
+                <input class="form-control btn btn-default" id="save_user" type="button" value="保存"/>
+            </div>
+            <div class="col-sm-1 butt-sub ctrl-active">
+                <input class="form-control btn btn-default" id="edit_cancel" type="submit" value="取消"/>
+            </div>
+            <!--第五行end-->
+        </div>
+        <div class="line-content">
+            <div class="line-content-in">
+                <a class="line-content-in-a">[修改密码]</a>
+            </div>
+        </div>
+        <div class="form-group" style="border-bottom: 3px solid #CFCFCF;">
+            <label class="col-sm-1 control-label" for="username">用户名</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="username" name="username" value="<$=user.username$>" type="text" disabled placeholder="用户名"/>
+            </div>
+            <label class="col-sm-1 control-label" for="password">密码</label>
+            <div class="col-sm-5" style="width: 43%;">
+                <input class="form-control" name="password" disabled id="password" value="<$=user.password$>" type="password" placeholder="密码"/>
+            </div>
+            <div class="col-sm-1 butt-sub" style="top:17px;right: 107px;">
+                <input class="form-control btn btn-default" id="edit_pwd" type="button" value="修改"/>
+            </div>
+            <div class="col-sm-1 butt-sub ctrl-active" style="top:17px;right: 225px;">
+                <input class="form-control btn btn-default" id="pwd_cancel" type="submit" value="取消"/>
+            </div>
+            <div class="col-sm-1 butt-sub ctrl-active" style="top:17px;right: -14px;">
+                <input class="form-control btn btn-default" id="save_pwd" type="button" value="保存"/>
+            </div>
+        </div>
+</form>
+<div class="footer content-heard">
+    <span>&copy;2017-2099，LX AND BY FOREVER</span>
+</div>
+<script type="text/javascript" src="/utils/jquery/dist/jquery.min.js" ></script>
+<script type="text/javascript" src="/utils/layer/layer.js"></script>
+<script src="/common/js/dialog.js" type="text/javascript"></script>
+<script type="text/javascript" src="/utils/datetime/laydate.js"></script>
+<script type="text/javascript" src="/utils/datetime/date.js"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/utils/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script type="text/javascript" src="/common/js/upload_img.js"></script>
+<script type="text/javascript" src="/admin/js/user_and_file.js"></script>
+</body>
+</html>

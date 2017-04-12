@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/common/css/templatemo-blue.css">
+    <link href="/utils/DataTables-1.10.11/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        body{
+            background: #F4F5F9;
+            font-family: '微软雅黑';
+            padding: 15px 10px;
+        }
+        .inpt{
+            width:100px;
+        }
+        .btn .inpt_btn{
+            color: #333;
+            background: #ccc;
+            font-size: 17px;
+            font-family: '微软雅黑';
+            margin-left:20px;
+        }
+        .content-heard{
+            background-color: #9D9E9E;
+            padding: 10px 6px;
+            margin-bottom: 10px;
+            margin-top: -14px;
+            width: 102%;
+            margin-left: -10px;
+        }
+        .footer{
+            text-align: center;
+            font-size: 14px;
+            padding: 6px;
+            background-color: rgba(221, 221, 221, 0.51);
+            position: fixed;
+            bottom: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="content-heard">
+            <span>[后台管理]</span>
+            <span>&gt;</span>
+            <span>[人员信息管理]</span>
+            <span>&gt;</span>
+            <span>[重要信息]</span>
+        </div>
+        <div style="margin: 5px 0px;right:5px;position: relative;float: right;">
+            <input type="button" class="btn inpt_btn" onclick="getUsers();" value="刷新信息">
+            <input type="button" class="btn inpt_btn" onclick="addUser();" value="添加信息">
+        </div>
+        <table class="table table-bordered" id="table1" style="margin-top: 10px;">
+            <thead>
+            <tr>
+                <th>
+                    序号
+                </th>
+                <th>
+                    名称
+                </th>
+                <th>
+                    说明/编码
+                </th>
+                <th>
+                    更新日期
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+            </thead>
+            <tbody id="user_list">
+            <tr>
+                <td colspan="5" name="error" style="text-align: center;">暂无数据！</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer content-heard">
+        <span>&copy;2017-2099，LX AND BY FOREVER</span>
+    </div>
+<script src="/utils/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="/utils/jquery-cookie/jquery.cookie.js" type="text/javascript"></script>
+<script src="/utils/layer/layer.js" type="text/javascript"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script src="/common/js/dialog.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script src="/utils/DataTables-1.10.11/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/utils/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="/utils/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dataTable-ajax.js"></script>
+<script type="text/javascript">
+    $(function(){
+        getUsers();
+    });
+
+    //保存图片
+    function saveImg(){
+        if($("#img_desc").val()==""){
+            openMsgLayer("描述不能为空！");
+            return;
+        }
+        if($("#img_name").val()==""||$("#img_url").val()==""){
+            openMsgLayer("请上传图片！");
+            return;
+        }
+        $.ajax({
+            url:'/upload/saveImg',
+            type:"POST",
+            data:$("#img_form").serialize(),
+            dataType:'JSON',
+            success:function(result){
+                if(result.error){
+                    openMsgLayer(result.error);
+                }else{
+                    openMsgLayer(result.success);
+                }
+            }
+        });
+    }
+
+    var i=0;
+    var dateTable = null;
+    function getUsers(){
+        if(i==0){
+            dateTable = new DataTable('/admin/getMessages',{user_id:''},'#table1',function(row, data, index ){
+                $(row).attr('id',"user"+$($(row).find('td')[0]).text());
+            });
+        }
+        dateTable.freshTable();
+        i++;
+    }
+
+    //添加信息
+    function addUser(){
+        var length=$("#user_list").find("[name='user_id']").length;
+        if(length>=1){
+            return;
+        }
+        var errms=$("#user_list").find("[name='error']").length;
+        if(errms>0){
+            $("#user_list").empty();
+        }
+        var add_user='<tr><td><input type="text" name="user_id" style="width:67px;color: #ccc;cursor: not-allowed;" value="自动生成序号" readonly></td>' +
+                '<td><input type="text" style="width: 270px" name="user_name"></td>' +
+                '<td><input type="text" style="width: 140px" name="password"></td>' +
+                '<td><input type="text" style="width: 170px" name="update_time" style="color: #ccc;cursor: not-allowed;" readonly></td>' +
+                '<td><input type="button" class="inpt btn btn-primary" style="margin-right: 20px;" onclick="saveUser();" value="保存"><input type="button" class="inpt btn btn-warning" onclick="getUsers();" value="取消"></td></tr>';
+        $("#user_list").append(add_user);
+        $("#user_list").find("[name='update_time']").val(new Date().pattern('yyyy-MM-dd HH:mm:ss'));
+    }
+    function saveUser(){
+        var msg_name=$("#user_list").find("[name='user_name']").val();
+        var msg_pwd=$("#user_list").find("[name='password']").val();
+        var update_time=$("#user_list").find("[name='update_time']").val();
+        if(msg_name==""||msg_pwd==""||update_time==""){
+            openMsgLayer("抱歉，请务必补全信息后再保存！");
+            return;
+        }
+        $.ajax({
+            url:'/admin/addMsg',
+            type:'POST',
+            data:{msg_name:msg_name,msg_pwd:msg_pwd,update_time:update_time},
+            dataType:'JSON',
+            success:function(result){
+                if(result.error){
+                    openMsgLayer("用户添加失败！");
+                }else{
+                    openMsgLayer("用户添加成功！");
+                    getUsers();
+                }
+            }
+        });
+    }
+    function editUser(obj){
+        var user=obj;
+        console.log(user.id);
+        var date=new Date().pattern('yyyy-MM-dd HH:mm:ss');
+        var edit_page='<td><input type="text" style="width:67px;color: #ccc;cursor: not-allowed;" readonly value="'+user.id+'"></td>' +
+                '<td><input type="text" style="width: 270px;" value="'+user.msg_name+'"></td>' +
+                '<td><input type="text" style="width: 140px;" value="'+user.msg_pwd+'"></td>' +
+                '<td><input type="text" style="width:170px;color: #ccc;cursor: not-allowed;" readonly value="'+date+'"></td>' +
+                '<td><input type="button" class="inpt btn btn-primary" style="margin-right: 20px;" onclick=\'editConfirm("'+user.id+'");\' value="保存"><input type="button" class="inpt btn btn-warning" onclick="getUsers();" value="取消"></td>';
+        $("#user"+user.id).empty();
+        $("#user"+user.id).append(edit_page);
+    }
+    //删除
+    function deleteUser(obj){
+        var index=openConfirmLayer('<p>是否要删除此条信息?</p><p style="color: red;">[注意：删除后将不可撤回！]</p>','删除','取消',function(){
+            var user=obj;
+            $.ajax({
+                url:'/admin/deleteMsg',
+                type:'POST',
+                data:{id:user.id,msg_name:user.msg_name,msg_pwd:user.msg_pwd,update_time:user.update_time},
+                dataType:'JSON',
+                success:function(result){
+                    if(result.error){
+                        openMsgLayer("用户删除失败！");
+                    }else{
+                        openMsgLayer("用户删除成功！");
+                        getUsers();
+                    }
+                }
+            });
+        },function(){
+            closeAlertLayer(index);
+        });
+    }
+    function editConfirm(msg_id){
+        var msg_name=$($("#user"+msg_id).find('input')[1]).val();
+        var msg_pwd=$($("#user"+msg_id).find('input')[2]).val();
+        var update_time=$($("#user"+msg_id).find('input')[3]).val();
+        if(msg_name==""||msg_pwd==""){
+            openMsgLayer("抱歉，请务必补全信息后再保存！");
+            return;
+        }
+        $.ajax({
+            url:'/admin/saveMsg',
+            type:'POST',
+            data:{id:msg_id,msg_name:msg_name,msg_pwd:msg_pwd,update_time:update_time},
+            dataType:'JSON',
+            success:function(result){
+                if(result.error){
+                    openMsgLayer("信息修改失败！");
+                }else{
+                    openMsgLayer("信息修改成功！");
+                    getUsers();
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

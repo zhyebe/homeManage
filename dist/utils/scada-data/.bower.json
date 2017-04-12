@@ -1,0 +1,30 @@
+{
+  "name": "scada-data",
+  "authors": [
+    "xvcuii <xvcuii@icloud.com>"
+  ],
+  "description": "scada data",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "97f8b3cfda",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "97f8b3cfda10fea707e3dd0351bed7c0e069d8b3"
+  },
+  "_source": "http://192.168.12.8:8080/scada_data.git",
+  "_target": "*",
+  "_originalSource": "scada-data",
+  "_direct": true
+}

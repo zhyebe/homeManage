@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>相册</title>
+    <link rel="stylesheet" href="/common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/common/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/admin/css/photo.css">
+    <link href="/utils/imageviewer/dist/viewer.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        body{
+            background: #F4F5F9;
+            font-family: '微软雅黑';
+            padding: 15px 10px;
+            height: 700px;
+        }
+        .content-heard{
+            background-color: #9D9E9E;
+            padding: 10px 6px;
+            margin-bottom: 10px;
+            margin-top: -14px;
+            width: 100%;
+            margin-left: -10px;
+        }
+        .footer{
+            text-align: center;
+            font-size: 14px;
+            padding: 6px;
+            background-color: rgba(221, 221, 221, 0.51);
+            position: fixed;
+            bottom: -10px;
+        }
+        .tab-btn{
+            position: fixed;
+            float: left;
+            bottom: 36px;
+            left: 0;
+            background-color: #BEBEBF;
+            height: 90%;
+            padding-top: 7%;
+            opacity: 0.7;
+        }
+        .tab-btn input{
+            display: block;
+            margin-top: 100px;
+            width: 78px;
+            border-radius: 0;
+        }
+        #float_img{
+            width: 90%;
+            margin: 44px auto;
+            margin-left: 20px;
+        }
+        .btn-a{
+            height: 20%;
+            line-height: 13;
+            top: 45%;
+            opacity: 1;
+        }
+        .sel-tab{
+            position: absolute;
+            float: left;
+            left: 100px;
+            background-color: #BEBEBF;
+            opacity: 0.7;
+            top: 57px;
+            width: 240px;
+            height: 40px;
+            padding-top: 2px;
+            padding-left:6px;
+        }
+        .sel-tab select{
+            width: 150px;
+            height: 35px;
+        }
+        .three_list .play_tb i {
+            position: absolute;
+            left: 78px;
+            top: 118px;
+            width: 40px;
+            height: 27px;
+            display: inline-block;
+            background-position: -45px -221px;
+        }
+    </style>
+</head>
+<body>
+<div class="content-heard" style="position: absolute;z-index: 1;">
+    <span>[后台管理]</span>
+    <span>&gt;</span>
+    <span>[多媒体信息管理]</span>
+    <span>&gt;</span>
+    <span>[生活相册]</span>
+</div>
+<div id="flash_img" class="my-container">  <!-- 大容器 -->
+    <div class="photo-wrap">  <!-- 舞台 -->
+        <div id="img_container" class="container active-flash">   <!-- 相册容器 -->
+
+        </div>
+        <div class="banner_box">
+            <a href="javascript:void(0)" id="banner_left_button" class="banner_button banner_left_button"><i class="main_icon"></i></a>
+            <a href="javascript:void(0)" id="banner_right_button" class="banner_button banner_right_button"><i class="main_icon"></i></a>
+        </div>
+    </div>
+</div>
+<div class="img-viewer" style="display: none;">
+    <img id="img-viewer" src="">
+</div>
+<div id="float_img" class="index_course_list fl" style="display: none;">
+    <ul class="three_list" id="three_list">
+
+    </ul>
+    <div class="banner_box">
+        <a href="javascript:void(0)" id="banner_left_button_normal" class="banner_button banner_left_button btn-a"><i class="main_icon"></i></a>
+        <a href="javascript:void(0)" id="banner_right_button_normal" class="banner_button banner_right_button btn-a"><i class="main_icon"></i></a>
+    </div>
+</div>
+<div class="tab-btn">
+    <input type="button" style="background-color: #C78350;border-color: #C78350;" class="btn btn-primary" id="flash_btn" value="3D模式">
+    <input type="button" style="background-color: #C78350;border-color: #C78350;" class="btn btn-primary" id="normal_btn" value="平铺模式">
+</div>
+<div class="sel-tab" style="width: 265px;">
+    <span>《视频分类》</span>
+    <select id="photos_id" name="photos_id"></select>
+</div>
+<div class="footer content-heard">
+    <span>&copy;2017-2099，LX AND BY FOREVER</span>
+</div>
+<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script src="/utils/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dialog.js"></script>
+<script type="text/javascript">
+    var array = [];
+    var lengths = 0;
+    var flag = 1;
+    $(function(){
+        getVideos();
+        setTimeout(function(){
+            getCount();
+            getVideo();
+            getVideoPage(0,9);
+        },200);
+        $("#img_container").mouseenter(function(){
+            $(this).removeClass('active-flash');
+            $(this).css({"width":'1000px'});
+            $(".img").css({'left':'400px'});
+            $(".banner_button").css({"opacity":1});
+        });
+        $(".banner_button").mouseenter(function(){
+            $("#img_container").removeClass('active-flash');
+            $("#img_container").css({"width":'1000px'});
+            $(".img").css({'left':'400px'});
+            $(this).css({"opacity":1});
+        });
+        $("#img_container").mouseleave(function(){
+            $(this).addClass('active-flash');
+            $(this).css({"width":'800px'});
+            $(".img").css({'left':'300px'});
+            $(".banner_button").css({"opacity":0});
+        });
+        $(".three_list").mouseenter(function(){
+            $(".banner_button").css({"opacity":1});
+        });
+        $(".three_list").mouseleave(function(){
+            $(".banner_button").css({"opacity":0});
+        });
+//        $(".img-viewer").viewer();
+        //左右切换
+        $("#banner_left_button").click(function(){
+            flag-=1;
+            if(flag<1){
+                flag = 1;
+                return;
+            }
+            array =  sortLeftArry(array);
+            initImgDiv(array);
+        });
+        $("#banner_right_button").click(function(){
+            flag+=1;
+            if(flag>lengths){
+                flag = lengths;
+                return;
+            }
+            array = sortRightArry(array);
+            initImgDiv(array);
+        });
+        $("#banner_left_button_normal").click(function(){
+            leastPage();
+        });
+        $("#banner_right_button_normal").click(function(){
+            nextPage();
+        });
+        $("#flash_btn").click(function(){
+            $("#flash_img").show();
+            $("#float_img").hide();
+        });
+        $("#normal_btn").click(function(){
+            $("#flash_img").hide();
+            $("#float_img").show();
+        });
+        $("#photos_id").change(function(){
+            initParam();
+            getCount();
+            getVideo();
+            getVideoPage(0,9);
+        });
+    });
+    function initParam(){
+        array = [];
+        lengths = 0;
+        flag = 1;
+        countAll =0;
+        pageSize = 0;
+        page = 1;
+    }
+    function initImgDiv(objs){
+        var ix = Math.ceil(360/lengths);
+        objs.each(function(index){
+            var deg = (index*ix)+'deg';
+            var trans_val = "rotateY("+deg+") translateZ(300px)";
+            $(this).css({
+                "transform": trans_val,
+            });
+            $(this).click(function(){
+                var img = $($(this).find('input')[0]).val();
+                openVideo(img);
+            });
+        });
+    }
+    function flashImg(obj){
+        var imgs = $(obj).attr('src');
+        $("#img-viewer").attr('src',imgs);
+        $("#img-viewer").trigger('click');
+    }
+    function getVideos(){
+        $.ajax({
+            url:'/admin/media/getVideos',
+            type:'POST',
+            dataType:'JSON',
+            success:function(result){
+                $("#photos_id").empty();
+                if(result.error||result.length<=0){
+                    $("#photos_id").append('<option value="0">暂无视频</option>');
+                }else{
+                    for(var i=0;i<result.length;i++){
+                        $("#photos_id").append('<option value="'+result[i].id+'">'+result[i].video_name+'</option>');
+                    }
+                }
+            }
+        });
+    }
+    var length = 9;
+    var countAll =0;
+    var pageSize = 0;
+    var page = 1;
+    function getCount(){
+        var videos_id = $("#photos_id").val();
+        if(videos_id==0){
+            openMsgLayer('暂无视频！');
+            return;
+        }
+        $.ajax({
+            url:'/admin/media/getVideoCount',
+            type:'POST',
+            data:{videos_id:videos_id},
+            dataType:'JSON',
+            success:function(result){
+                if(!result.error&&result.length>0){
+                    countAll = result[0].sum;
+                    pageSize = Math.ceil(countAll/length);
+                }
+            }
+        });
+    }
+    //上一页
+    function leastPage(){
+        page-=1;
+        if(page<1){
+            page = 1;
+            openMsgLayer('已经是第一页！');
+            return;
+        }
+        var start = (page-1)*length;
+        getVideoPage(start,length);
+    }
+    //下一页
+    function nextPage(){
+        page+=1;
+        if(page>pageSize){
+            page = pageSize;
+            openMsgLayer('已经是最后一页！');
+            return;
+        }
+        var start = (page-1)*length;
+        getVideoPage(start,length);
+    }
+    function getVideoPage(start,length){
+        var videos_id = $("#photos_id").val();
+        if(videos_id==0){
+            openMsgLayer('暂无视频！');
+            return;
+        }
+        $.ajax({
+            url:'/admin/media/getVideoPage',
+            type:'POST',
+            data:{videos_id:videos_id,start:start,length:length},
+            dataType:'JSON',
+            success:function(result){
+                var date = new Date().pattern('yyyy-MM-dd HH:mm:ss');
+                var img_float = '<li>'
+                        +'<a href="javascript:void(0);">'
+                        +'<img alt="" class="lazy" src="/common/images/timg.jpg" data-original="/common/images/timg.jpg" width="225" height="154" style="display: inline;">'
+                        +'</a>'
+                        +'<div class="course_details">'
+                        +'<a href="javascript:void(0);">日期：</a>'
+                        +'<span>'+date+'</span>'
+                        +'</div>'
+                        +'</li>';
+                $("#three_list").empty();
+                if(result.error||result.length<=0){
+                    $("#three_list").append(img_float);
+                }else{
+                    var row = 0;
+                    var left = 78;
+                    var top = 118;
+                    var left_step = 248;
+                    var top_step = 235;
+                    var col = 0;
+                    for(var i=0;i<result.length;i++){
+                        if(i%3==0&&i!=0){
+                            row +=1;
+                            col = 0;
+                        }
+                        var lefts = left + col*left_step;
+                        var tops = top + row*top_step;
+                        var img_fl = '<li>'
+                                +'<a class="play_tb" href="javascript:openVideo(\''+result[i].video_url+'\');">'
+                                +'<img alt="" class="lazy" onclick="flashImg(this)" src="'+result[i].video_cover+'" data-original="'+result[i].video_url+'" width="225" height="154" style="display: inline;"><i style="left: '+lefts+'px;top:'+tops+'px;" class="main_icon"></i>'
+                                +'</a>'
+                                +'<div class="course_details">'
+                                +'<a>上传日期：</a>'
+                                +'<span>'+result[i].update_time+'</span>'
+                                +'</div>'
+                                +'</li>';
+                        $("#three_list").append(img_fl);
+                        col++;
+                    }
+                    $("#three_list").find('.lazy').each(function(){
+                        $(this).mouseenter(function(){
+                            $(this).next().css({"background-position": "0px -221px"});
+                            $(this).next().mouseenter(function(){
+                                $(this).css({"background-position": "0px -221px"});
+                            });
+                        });
+                        $(this).mouseleave(function(){
+                            $(this).next().css({"background-position": "-45px -221px"});
+                        });
+                    });
+                }
+            }
+        });
+    }
+    function getVideo(){
+        var videos_id = $("#photos_id").val();
+        if(videos_id==0){
+            openMsgLayer('暂无视频！');
+            return;
+        }
+        $.ajax({
+            url:'/admin/media/getVideo',
+            type:'POST',
+            data:{videos_id:videos_id},
+            dataType:'JSON',
+            success:function(result){
+                var img_container = '<div class="img" style="background: url(\'/common/images/timg.jpg\') no-repeat;cursor: pointer;">'
+                        +'</div>';
+                $("#img_container").empty();
+                if(result.error||result.length<=0){
+                    $("#img_container").append(img_container);
+                }else{
+                    $("#img_container").css('background','url('+result[0].cover_page_url+')');
+                    var map_length = 9;
+                    if(result.length<9){
+                        map_length = result.length;
+                    }
+                    for(var i=0;i<map_length;i++){
+                        var img_cont = '<div class="img play_tb" style="background: url(\''+result[i].video_cover+'\') no-repeat;cursor: pointer;">'
+                                +'<input type="hidden" value="'+result[i].video_url+'">'
+                                +'</div>';
+                        $("#img_container").append(img_cont);
+                    }
+                    array = $("#img_container").find('div');
+                    lengths = array.length;
+                    initImgDiv(array);
+                }
+            }
+        });
+    }
+    function openVideo(url){
+        layer.open({
+            type: 1,
+            title:'视频',
+            skin: 'layui-layer-demo', //加上边框
+            area: ['1110px', '670px'], //宽高
+            content: '<video style="margin: 10px auto;margin-left: 5px;" width="1090" height="590" controls><source src="'+url+'" type="video/mp4"> <source src="movie.ogg" type="video/ogg">您的浏览器不支持 video 标签。 </video>'
+        });
+    }
+</script>
+</body>
+</html>

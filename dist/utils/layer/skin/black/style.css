@@ -1,0 +1,11 @@
+html #layui_layer_skinblackstylecss{display:none; position: absolute; width:1989px;}
+body .layer-ext-black .layui-layer-title{padding:0 80px 0 10px;height:32px;line-height:32px;border-bottom:1px solid #151821;font-size:10px;
+    color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    background:#151821; border-radius:2px 2px 0 0}
+
+body .layer-ext-black .layui-layer-setwin .layui-layer-close1,body .layer-ext-black .layui-layer-setwin .layui-layer-close2 {
+    background: url(close_new.png);
+}
+body .layer-ext-black .layui-layer-setwin .layui-layer-close1:hover,body .layer-ext-black .layui-layer-setwin .layui-layer-close2:hover {
+    background: url(close_new.png);
+}

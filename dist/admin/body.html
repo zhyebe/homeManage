@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="/utils/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/metronic/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/utils/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/utils/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/admin/css/file.css">
+    <link href="/admin/css/dateTime.css" rel="stylesheet" type="text/css"/>
+    <link href="/common/css/dateTime.css" rel="stylesheet" type="text/css">
+    <link href="/utils/imageviewer/dist/viewer.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        body{background: #F4F5F9;font-family: '微软雅黑';padding: 15px 10px;overflow: hidden;}
+        .content-heard{background-color: #9D9E9E;padding: 10px 20px;margin-bottom: 10px;margin-left: -10px;font-size: 16px;  }
+        .footer{text-align: center;  font-size: 14px;  padding: 6px;  background-color: rgba(221, 221, 221, 0.51);  position: fixed;  bottom: -10px;  width: 101%;  }
+        .butt-sub{
+            float: right;
+            position: relative;
+            right: 3.3%;
+            top: 72px;
+            width: 8%;
+        }
+        .inpt_width{
+            width:367px;
+        }
+        .sanwei{
+            width: 32.6%;
+            display: inline-block;
+        }
+        .ctrl-active{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="content-heard">
+    <span>[后台管理]</span>
+    <span>&gt;</span>
+    <span>[相关信息管理]</span>
+    <span>&gt;</span>
+    <span>[身体信息]</span>
+</div>
+<form class="form-horizontal" id="body_form" style="margin-top: 50px;" role="form">
+    <!--第一行start-->
+    <div class="form-group">
+        <label class="col-sm-1 control-label">编号</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control" id="code_no" disabled name="id" value="<$=body.id$>" type="text" disabled placeholder="自动生成"/>
+        </div>
+        <label class="col-sm-1 control-label">姓名</label>
+        <div class="col-sm-2 inpt_width">
+            <select class="form-control" id="user_id" name="user_id">
+                <$
+                if(body.users&&body.users.length>0){
+                    body.users.forEach(function(user){
+                $>
+                <option value="<$=user.id$>" <$if(user.id==body.user_id){$>selected<$}$>><$=user.real_name$></option>
+                <$})}$>
+            </select>
+        </div>
+        <label class="col-sm-1 control-label">身高</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control no-active" id="height" value="<$=body.height$><$=body.cm_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="height" type="text" placeholder="身高">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label">体重</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control no-active" id="weight" value="<$=body.weight$><$=body.weight_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="weight" type="text" placeholder="体重"/>
+        </div>
+        <label class="col-sm-1 control-label">三围</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control sanwei no-active" id="chest_size" value="<$=body.chest_size$><$=body.cm_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="chest_size" type="text" placeholder="胸围"/>
+            <input class="form-control sanwei no-active" id="waist_size" value="<$=body.waist_size$><$=body.cm_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="waist_size" type="text" placeholder="腰围"/>
+            <input class="form-control sanwei no-active" id="hip_size" value="<$=body.hip_size$><$=body.cm_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="hip_size" type="text" placeholder="臀围"/>
+        </div>
+        <label class="col-sm-1 control-label">肺活量</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control no-active" id="vital_capacity" value="<$=body.vital_capacity$><$=body.ml_unit$>" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  name="vital_capacity" type="text" placeholder="肺活量"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label">视力</label>
+        <div class="col-sm-2 inpt_width">
+            <input class="form-control no-active" id="eye_sight" value="<$=body.eye_sight$>" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')"  name="eye_sight" type="text" placeholder="视力"/>
+        </div>
+        <span class="col-sm-1 control-label marg_span_input span_width">采集时间</span>
+        <div class="col-sm-4 inpt_width" >
+            <div id="birth_day" class="input-group date form_date" data-date="">
+                <input id="survey_time" name="survey_time" value="<$=body.survey_time$>" style="width: 206%;" placeholder="请选择日期" class="laydate-icon no-active" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+            </div>
+        </div>
+        <span class="col-sm-1 control-label marg_span_input span_width">更新时间</span>
+        <div class="col-sm-4 inpt_width">
+            <div id="up_date" class="input-group date form_date" data-date="">
+                <input id="update_time" disabled name="update_time" value="<$=body.update_time$>" style="width: 206%;" placeholder="请选择日期" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="border-bottom: 3px solid #CFCFCF;padding-bottom: 55px;">
+        <div class="col-sm-1 butt-sub">
+            <input class="form-control btn btn-default" id="edit_body" type="button" value="修改"/>
+        </div>
+        <div class="col-sm-1 butt-sub ctrl-active">
+            <input class="form-control btn btn-default" id="save_body" type="button" value="保存"/>
+        </div>
+        <div class="col-sm-1 butt-sub ctrl-active">
+            <input class="form-control btn btn-default" id="edit_cancel" type="submit" value="取消"/>
+        </div>
+    </div>
+</form>
+<div class="footer content-heard">
+    <span>&copy;2017-2099，LX AND BY FOREVER</span>
+</div>
+<script type="text/javascript" src="/utils/jquery/dist/jquery.min.js" ></script>
+<script type="text/javascript" src="/utils/layer/layer.js"></script>
+<script src="/common/js/dialog.js" type="text/javascript"></script>
+<script type="text/javascript" src="/utils/datetime/laydate.js"></script>
+<script type="text/javascript" src="/utils/datetime/date.js"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/utils/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script type="text/javascript" src="/common/js/upload_img.js"></script>
+<script type="text/javascript" src="/admin/js/body.js"></script>
+</body>
+</html>

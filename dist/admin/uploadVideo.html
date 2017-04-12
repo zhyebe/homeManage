@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/common/css/templatemo-blue.css">
+    <link href="/utils/DataTables-1.10.11/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/imageviewer/dist/viewer.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/css/dateTime.css" rel="stylesheet" type="text/css"/>
+    <link href="/common/css/dateTime.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/admin/css/file.css">
+    <style>
+        body{font-size:15px;background: #F4F5F9;font-family: '微软雅黑';padding: 15px 10px;height: 724px;overflow: hidden;}
+        .content-heard{background-color: #9D9E9E;padding: 10px 6px;margin-bottom: 10px;margin-top: -14px; width: 102%; margin-left: -10px;}
+        .footer{text-align: center;font-size: 14px;padding: 6px;background-color: rgba(221, 221, 221, 0.51);position: fixed;bottom: -10px;}
+        #user_list td{text-align: center;}
+        #user_list td img{cursor: pointer;}
+        .label-left{width: 78px;font-size: 12px;height: 35px;line-height: 35px;margin-left: 149px;background-color: #D4D5DA;padding-left: 15px;padding-right: 3px;color: #6d767f;font-weight: 200;font-family: '微软雅黑';margin-right: -8px;}
+        .upload-div{
+            position: absolute;
+            width: 98.5%;
+            height: 93%;
+            border: 1px solid #b4b4b5;
+            z-index: 990;
+            box-shadow: 6px 7px 5px #B1B1B1;
+            left: 10px;
+            bottom: 1px;
+        }
+        .cover-div{
+            background-color: #000;
+            z-index: 9;
+            opacity: 0.86;
+        }
+        .close-btn{
+            position: relative;
+            float: right;
+            font-size: 22px;
+            background-color: #ccc;
+            margin: 8px;
+            padding: 1px 10px;
+        }
+        .close-btn:hover{
+            background-color: #acacac;
+        }
+        .close-btn a{
+            text-decoration: none;
+        }
+        .upload-content{
+            width: 100%;
+            margin-top: 50px;
+            display: block;
+            float: left;
+            position: relative;
+        }
+        .window-content{
+            width: 810px;
+            height: 495px;
+            border: 1px solid #D8D9DE;
+            margin: 78px auto;
+            background-color: #fff;
+        }
+        .console-msg{
+            width: 31.26%;
+            height: 190px;
+            border: 1px solid #959595;
+            position: absolute;
+            bottom: 120px;
+            left: 32.8%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            box-shadow: 6px 7px 5px #B1B1B1;
+            border-radius: 4px;
+        }
+        .cover-file{
+            width: 187px;
+            position: relative;
+            float: left;
+            left: 15%;
+        }
+        .cover-img{
+            position: relative;
+            float: left;
+            left: 8%;
+        }
+    </style>
+</head>
+<body>
+<div class="content-heard">
+    <span>[后台管理]</span>
+    <span>&gt;</span>
+    <span>[上传管理]</span>
+    <span>&gt;</span>
+    <span>[生活相册上传]</span>
+</div>
+<div style="margin: 5px 0px;right:5px;position: relative;float: right;">
+    <input type="button" class="btn inpt_btn" onclick="uploadPage();" value="上传视频">
+</div>
+<div class="upload-div cover-div" style="display: none;"></div>
+<div class="upload-div" style="display: none;">
+    <div class="close-btn"><a href="javascript:closeUploadPage();">关闭</a></div>
+    <div class="window-content">
+        <div class="upload-content">
+            <div class="form-group">
+                <label class="col-sm-1 control-label label-left" style="padding-left: 9px;font-weight: 500;color:#6d767f;font-family:'微软雅黑';font-size: 15px;">视频锦集</label>
+                <div class="col-sm-3" style="width: 45.8%;">
+                    <select class="form-control" id="photos">
+                    </select>
+                    <div id="cover_page" style="display: none;">
+
+                    </div>
+                    <input type="text" id="photos_name" placeholder="请输入视频锦集名称" style="display: none;" class="form-control">
+                    <input type="button" id="confirm_btn" onclick="confirmVideos();" class="btn btn-default" style="display: none;font-size: 15px;position: absolute;border-radius:0px 4px 4px 0px;top: 34px;right: -25px;height: 34px;" value="确定">
+                    <input type="button" id="add_btn" onclick="addVideos();" class="btn btn-default" style="font-size: 15px;position: absolute;display: block;top: 0px;right: -25px;height: 34px;" value="+" title="添加锦集">
+                </div>
+                <div class="col-sm-5 file-uploader-wrap" style="margin-top: 26px;float: left;width: 100%;">
+                    <input type="file" class="file-uploader form-control" accept="image/gif,image/png,image/jpeg" name="uploadDataField" id="FileUploaders"/>
+                    <div class="file-uploader-wrap-fake" style="left: 57.4%;margin-left: -230px;">
+                        <input type="hidden" id="videos_cover">
+                        <input type="text"  value="" name="head_url" id="PathDisplayers" style="background: rgb(255, 255, 255);width: 211.6%" placeholder="上传视频锦集封面" class="input-text form-control" disabled />
+                        <a href="javascript:void(0)" class="link-btn" >选择文件</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upload-content">
+            <div class="form-group">
+                <div class="col-sm-5 file-uploader-wrap" style="float: left;width: 100%;">
+                    <input type="file" class="file-uploader form-control" multiple="multiple" accept="video/ogg,video/mp4,video/mpeg,video/H264" name="uploadDataField" id="FileUploader"/>
+                    <div class="file-uploader-wrap-fake" style="left: 57.4%;margin-left: -230px;">
+                        <input type="text"  value="" name="head_url" id="PathDisplayer" style="background: rgb(255, 255, 255);width: 211.6%" placeholder="上传视频" class="input-text form-control" disabled />
+                        <a href="javascript:void(0)" class="link-btn" >选择文件</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="console-msg" id="console-msg">
+        </div>
+    </div>
+</div>
+<table class="table table-bordered" id="table1" style="margin-top: 10px;">
+    <thead>
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+            所属锦集
+        </th>
+        <th>
+            视频地址
+        </th>
+        <th>
+            封面
+        </th>
+        <th>
+            更新日期
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+    </thead>
+    <tbody id="user_list">
+    <tr>
+        <td colspan="9" name="error" style="text-align: center;">暂无数据！</td>
+    </tr>
+    </tbody>
+</table>
+<div class="footer content-heard">
+    <span>&copy;2017-2099，LX AND BY FOREVER</span>
+</div>
+<script src="/utils/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="/utils/jquery-cookie/jquery.cookie.js" type="text/javascript"></script>
+<script src="/utils/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="/utils/datetime/laydate.js"></script>
+<script type="text/javascript" src="/utils/datetime/date.js"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script src="/common/js/dialog.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script type="text/javascript" src="/common/js/upload_img.js"></script>
+<script src="/utils/DataTables-1.10.11/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/utils/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="/utils/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dataTable-ajax.js"></script>
+<script type="text/javascript">
+    var num =0;
+    var optionSize = 0;
+    $(function(){
+        getVideos();
+        getVideosImg();
+        $("#photos").click(function(){
+            $("#photos_name").hide('slow');
+            $("#confirm_btn").hide('slow');
+        });
+        $("#photo_type").click(function(){
+            $("#type_name").hide('slow');
+            $("#confirm_type").hide('slow');
+        });
+        $("#photos").change(function(){
+            var v_id = $(this).val();
+            var video_cover_url = $("#video_cover_page"+v_id).val();
+            $("#videos_cover").val(video_cover_url);
+            $("#PathDisplayers").val(video_cover_url);
+        });
+        var fileUploader = document.getElementById('FileUploader');
+        var pathDisplayer = document.getElementById('PathDisplayer');
+        var fileUploaders = document.getElementById('FileUploaders');
+        var pathDisplayers = document.getElementById('PathDisplayers');
+        if(fileUploader.addEventListener){
+            fileUploader.addEventListener('change', fileUploaderChangeHandler, false);
+        }else if(fileUploader.attachEvent){
+            fileUploader.attachEvent('onclick', fileUploaderClickHandler);
+        }else{
+            fileUploader.onchange = fileUploaderChangeHandler;
+        }
+        if(fileUploaders.addEventListener){
+            fileUploaders.addEventListener('change', fileUploaderChangeHandlers, false);
+        }else if(fileUploaders.attachEvent){
+            fileUploaders.attachEvent('onclick', fileUploaderClickHandlers);
+        }else{
+            fileUploader.onchange = fileUploaderChangeHandlers;
+        }
+        function fileUploaderChangeHandler(){
+            var index = layer.load();
+            uploadVideoFunc("FileUploader",function(data){
+                num = 0;
+                $("#console-msg").empty();
+                if(data){
+                    var path = data.filePath;
+                    var urls = data.msg;
+                    console.log(urls[0]);
+                    uploadSave(path,urls);
+                    var urlstr = '';
+                    var setInter = setInterval(function(){
+                        layer.close(index);
+                        $("#console-msg").append('<p>视频'+path+urls[num]+'上传成功！</p>');
+                        $("#console-msg").scrollTop((num+1)*100);
+                        if(num == urls.length-1){
+                            clearInterval(setInter);
+                            urlstr += path+urls[num];
+                        }else{
+                            urlstr += path+urls[num]+";";
+                        }
+                        $("#PathDisplayer").val(urlstr);
+                        num++;
+                    },300);
+                }else{
+                    layer.close(index);
+                }
+            });
+        }
+        function fileUploaderChangeHandlers(){
+            var index = layer.load();
+            uploadImgFunc("FileUploaders",function(data){
+                $("#console-msg").empty();
+                layer.close(index);
+                if(data){
+                    var path = data.filePath;
+                    var urls = data.msg;
+                    var cover_url = data.filePath + urls[0];
+                    $("#console-msg").append('<p>封面'+cover_url+'上传成功！</p>');
+                    $("#videos_cover").val(cover_url);
+                    $("#PathDisplayers").val(cover_url);
+                }
+            });
+        }
+        function fileUploaderClickHandler(){
+            setTimeout(function(){
+                fileUploaderChangeHandler();
+            }, 0);
+        }
+        function fileUploaderClickHandlers(){
+            setTimeout(function(){
+                fileUploaderChangeHandlers();
+            }, 0);
+        }
+    });
+    var i=0;
+    var dateTable = null;
+    function getVideos(){
+        if(i==0){
+            dateTable = new DataTable('/admin/media/getVideoAll',{id:''},'#table1',function(row, data, index ){
+                $(row).attr('id',"user"+$($(row).find('td')[0]).text());
+                $(row).viewer();
+            },[
+                {"width":'65px',"targets":0},
+                {"width":'90px',"targets":1},
+                {"width":'90px',"targets":2},
+                {"width":'170px',"targets":3},
+                {"width":'100px',"targets":4},
+                {"width":'170px',"targets":5},
+            ]);
+        }
+        dateTable.freshTable();
+        i++;
+    }
+    function addVideos(){
+        $("#photos_name").show('slow');
+        $("#confirm_btn").show('slow');
+    }
+    function confirmVideos(){
+        var ph_name = $("#photos_name").val();
+        if(ph_name == ""){
+            openMsgLayer('相册名称不能为空！');
+            return;
+        }else{
+            $.ajax({
+                url:'/admin/media/checkVideos',
+                type:'POST',
+                data:{videos_name:ph_name},
+                dataType:'JSON',
+                success:function(result){
+                    if(!result.error&&result.length>0){
+                        openMsgLayer("该名称已经存在，请更换一个！");
+                    }else if(result.error){
+                        openMsgLayer("出现异常，请重试！");
+                    }else{
+                        $("#photos").find('option').each(function(){
+                            $(this).attr('selected',false);
+                        });
+                        var sizes = $("#photos").find('option').length;
+                        if(sizes<optionSize+1) {
+                            $("#photos").append('<option selected value="0">' + ph_name + '</option>');
+                        }else{
+                            openMsgLayer('不能同时添加多个名称');
+                        }
+                        $("#photos_name").hide('slow');
+                        $("#confirm_btn").hide('slow');
+                    }
+                }
+            });
+        }
+    }
+    function getVideosImg(){
+        $.ajax({
+            url:'/admin/media/getVideos',
+            type:'POST',
+            dataType:'JSON',
+            success:function(result){
+                $("#photos").empty();
+                if(result.error||result.length<=0){
+                    $("#photos").append('<option value="0">暂无锦集</option>');
+                }else{
+                    $("#videos_cover").val(result[0].cover_page_url);
+                    $("#PathDisplayers").val(result[0].cover_page_url);
+                    optionSize = result.length;
+                    for(var i=0;i<result.length;i++){
+                        $("#photos").append('<option value="'+result[i].id+'">'+result[i].video_name+'</option>');
+                        $("#cover_page").append('<input type="hidden" id="video_cover_page'+result[i].id+'" value="'+result[i].cover_page_url+'">');
+                    }
+                }
+            }
+        });
+    }
+    //关闭上传页面
+    function closeUploadPage(){
+        $(".upload-div").hide('slow');
+        getVideos();
+        getVideosImg();
+    }
+    //打开上传页面
+    function uploadPage(){
+        $(".upload-div").show('slow');
+    }
+    function uploadCover(obj){
+        var indexs = layer.load();
+        uploadImgFunc('cover_upload'+obj.id,function(data){
+            if(data){
+                var path = data.filePath + data.msg[0];
+                uploadSaveCover(path,obj.id);
+                layer.close(indexs);
+            }else{
+                layer.close(indexs);
+            }
+        });
+    }
+    function uploadSaveCover(cover_img,id){
+        if(cover_img&&cover_img!=''){
+            $.ajax({
+                url:'/admin/media/uploadSaveCover',
+                type:'POST',
+                data:{video_id:id,video_cover:cover_img},
+                dataType:'JSON',
+                success:function(result){
+                    if(result.error){
+                        openMsgLayer("视频封面修改失败！");
+                    }else{
+                        openMsgLayer("视频封面修改成功！");
+                        getVideos();
+                    }
+                }
+            });
+        }else{
+            openMsgLayer("请重新上传！");
+        }
+    }
+    function uploadSave(path,videos){
+        var videos_id = $("#photos").val();
+        var videos_name = $($("#photos").find("option:selected")[0]).text();
+        var videos_cover = $("#videos_cover").val();
+        var update_time = new Date().pattern('yyyy-MM-dd HH:mm:ss');
+        var video = JSON.stringify(videos);
+        if(videos_id==""||videos_name==""||videos_cover==""||update_time==""||!videos||videos==""){
+            openMsgLayer("信息不正确，确保已经上传了文件和填写了信息后再试！");
+            return;
+        }
+        $.ajax({
+            url:'/admin/media/uploadVideoSave',
+            type:'POST',
+            data:{videos_id:videos_id,videos_name:videos_name,path:path,videos:video,videos_cover:videos_cover,update_time:update_time},
+            dataType:'JSON',
+            success:function(result){
+                getVideosImg();
+                if(result.error){
+                    openMsgLayer("保存失败！");
+                }else{
+                    openMsgLayer("保存成功！");
+                }
+            }
+        });
+    }
+    //删除
+    function deleteVideo(obj){
+        var index=openConfirmLayer('<p>是否要删除此条信息?</p><p style="color: red;">[注意：删除后将不可撤回！]</p>','删除','取消',function(){
+            var video=obj;
+            $.ajax({
+                url:'/admin/media/deleteVideo',
+                type:'POST',
+                data:{id:video.id,video_url:video.video_url,video_cover:video.video_cover},
+                dataType:'JSON',
+                success:function(result){
+                    if(result.error){
+                        openMsgLayer("删除失败！");
+                    }else{
+                        openMsgLayer("删除成功！");
+                        getVideos();
+                    }
+                }
+            });
+        },function(){
+            closeAlertLayer(index);
+        });
+    }
+    function openVideo(obj){
+        var url = obj.video_url;
+        layer.open({
+            type: 1,
+            title:'视频',
+            skin: 'layui-layer-demo', //加上边框
+            area: ['1110px', '670px'], //宽高
+            content: '<video style="margin: 10px auto;margin-left: 5px;" width="1090" height="590" controls><source src="'+url+'" type="video/mp4"> <source src="movie.ogg" type="video/ogg">您的浏览器不支持 video 标签。 </video>'
+        });
+    }
+</script>
+</body>
+</html>

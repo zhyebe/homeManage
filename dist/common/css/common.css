@@ -1,0 +1,84 @@
+.fixtitle {  z-index: 99999;   height: 40px;  line-height: 40px;  /*border-bottom:1px solid #46546c;*/ background: rgba(0,0,0,.3);}
+.portlet.box > .portlet-body{    background: rgba(0,0,0,.2);}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th{   background: none;}
+.btn:hover, .btn:focus{color:#fff;}
+.table-bordered.tdbone, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{border:1px solid #656c84;}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    border-top: 1px solid #656c84;}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{border:1px solid #656c84;}
+table.lineheight{margin-bottom: 0;}
+table.lineheight td,table.lineheight th{height:36px; line-height: 36px;}
+.caption {
+    color: #a7adbe;
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: 400;
+    display: inline-block;
+    padding-left:20px;
+}
+
+.caption i {
+    margin-right: 10px;
+}
+
+a.btn {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 7px;
+}
+a.btn_add, a.btn_delete, a.cms_edit,a.rgh_btn_defalut,a.upload_btn {
+    font-size: 14px;
+    color: #d1d7e7;
+    border-left: 1px solid #39475d;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px;
+    -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in;
+}
+a.rgh_btn_defalut{padding: 0 10px 0 35px;  -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in; }
+a.btn_add:hover, a.btn_delete:hover, a.cms_edit:hover,a.rgh_btn_defalut:hover,a.upload_btn:hover{background: rgba(0,0,0,.3); color:#fff;}
+a.btn_add span, a.btn_delete span,a.cms_edit span,a.rgh_btn_defalut span {
+    display: inline-block;
+}
+.blue_border{margin:20px; position: relative; border:1px solid #4f5d9d;}
+.font{padding-left:20px; border-left:1px solid #445167;}
+.pdr20{padding-right:20px;}
+.diagram{padding:0 10px;/* overflow-x:scroll;*/}
+.diagram .contentbox{/*width:calc((100% - 22px) / 3);*/ padding-top:10px; padding-right:10px; /*height:180px;  overflow: hidden;*/}
+.contentbox .box{width:487px; height:138px; background: rgba(168,70,219,.2); border:1px solid #5f4886;}
+/*@media  (max-width:1870px) {
+    .diagram{height:180px; overflow-y: scroll; }
+}*/
+    .contentbox .box .boxleft{border-right:1px solid #5f4885; padding:8px; position: relative;}
+    .check{position: absolute; top:15px; left:15px;}
+    .contentbox .box .boxleft .img{ background: url("/cms/images/default.jpg") no-repeat; width:228px; height:120px;}
+    .contentbox .box .boxleft .img1{background: url("/cms/images/img1.jpg") no-repeat;}
+    .contentbox .box .boxleft .img2{background: url("/cms/images/img2.jpg") no-repeat;}
+    .contentbox .box .boxrgh{padding-top:12px; color:#fff; font-weight: normal; width: 240px; position: relative; height: 136px;}
+    .contentbox .box .boxrgh li{font-size:14px;line-height:26px;padding-left:18px;}
+    .rghbottom{padding-left:18px;font-size:12px; height:30px; line-height: 30px; background: rgba(0,0,0,.2); position: absolute; bottom:0; width:240px;}
+    .diagram_edit{width:50px; height:30px; display: inline-block; background: url('/cms/images/editicon2.png') center center no-repeat; border-left:1px solid #494267; cursor: pointer; -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in;}
+    .diagram_edit:hover{background:rgba(0,0,0,.2) url("/cms/images/editicon2_hover.png") center center no-repeat;}
+
+a.cancelbtn, a.deletebtn, a.savebtn {
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background: #576b99;
+    cursor: pointer;
+    margin-right: 2px;
+    display: inline-block;
+    -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in;
+}
+a.cancelbtn:hover, a.deletebtn:hover, a.savebtn:hover {
+    background: #6d86bf;
+    text-decoration: none;
+}
+
+a.add_btn{background: url("/manage/images/icon/add_icon.png") no-repeat 10px center;  -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in; }
+a.add_btn:hover{background:rgba(0,0,0,.3)  url("/manage/images/icon/add_icon_hover.png") no-repeat 10px center;}
+a.del_btn{background: url("/manage/images/icon/delete.png") no-repeat 10px center;height:40px; line-height: 40px;  -webkit-transition: all 0.28s ease-in; -moz-transition: all 0.28s ease-in; -o-transition: all 0.28s ease-in; -ms-transition: all 0.28s ease-in;   transition: all 0.28s ease-in;  }
+a.del_btn:hover{background:rgba(0,0,0,.3)  url("/manage/images/icon/delete_hover.png") no-repeat 10px center;}

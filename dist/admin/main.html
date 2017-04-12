@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/common/css/templatemo-blue.css">
+    <link href="/utils/DataTables-1.10.11/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/utils/imageviewer/dist/viewer.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/css/dateTime.css" rel="stylesheet" type="text/css"/>
+    <link href="/common/css/dateTime.css" rel="stylesheet" type="text/css">
+    <style>
+        .inpt{
+            width:100px;
+        }
+        body{
+            background: #F4F5F9;
+            font-family: '微软雅黑';
+            padding: 15px 10px;
+            height: 700px;
+        }
+        .content-heard{
+            background-color: #9D9E9E;
+            padding: 10px 6px;
+            margin-bottom: 10px;
+            margin-top: -14px;
+            width: 102%;
+            margin-left: -10px;
+        }
+        .footer{
+            text-align: center;
+            font-size: 14px;
+            padding: 6px;
+            background-color: rgba(221, 221, 221, 0.51);
+            position: fixed;
+            bottom: -10px;
+        }
+        #user_list td{
+            text-align: center;
+        }
+        #user_list td img{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="content-heard">
+        <span>[后台管理]</span>
+        <span>&gt;</span>
+        <span>[人员信息管理]</span>
+        <span>&gt;</span>
+        <span>[用户信息]</span>
+    </div>
+    <div style="margin: 5px 0px;right:5px;position: relative;float: right;">
+        <input type="button" class="btn inpt_btn" onclick="addUser();" value="添加用户">
+    </div>
+    <table class="table table-bordered" id="table1" style="margin-top: 10px;">
+        <thead>
+        <tr>
+            <th style="width:65px;">
+                序号
+            </th>
+            <th style="width:118px;">
+                用户名
+            </th>
+            <th style="width:165px;">
+                密码
+            </th>
+            <th style="width:118px;">
+                姓名
+            </th>
+            <th style="width:73px;">
+                年龄
+            </th>
+            <th style="width:245px;">
+                出生日期
+            </th>
+            <th style="width:217px;">
+                照片
+            </th>
+            <th style="width:230px;">
+                更新日期
+            </th>
+            <th style="width:260px;">
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody id="user_list">
+        <tr>
+            <td colspan="9" name="error" style="text-align: center;">暂无数据！</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="footer content-heard">
+    <span>&copy;2017-2099，LX AND BY FOREVER</span>
+</div>
+<script src="/utils/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="/utils/jquery-cookie/jquery.cookie.js" type="text/javascript"></script>
+<script src="/utils/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="/utils/datetime/laydate.js"></script>
+<script type="text/javascript" src="/utils/datetime/date.js"></script>
+<script src="/utils/imageviewer/dist/viewer.min.js" type="text/javascript"></script>
+<script src="/common/js/dialog.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dateUtils.js"></script>
+<script type="text/javascript" src="/common/js/upload_img.js"></script>
+<script src="/utils/DataTables-1.10.11/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/utils/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="/utils/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/common/js/dataTable-ajax.js"></script>
+<script type="text/javascript">
+    $(function(){
+        getUsers();
+    });
+    var i=0;
+    var dateTable = null;
+    function getUsers(){
+        if(i==0){
+            dateTable = new DataTable('/admin/getUsers',{user_id:''},'#table1',function(row, data, index ){
+                $(row).attr('id',"user"+$($(row).find('td')[0]).text());
+                $(row).viewer();
+            },[
+                {width:'65px',targets:0},
+                {width:'118px',targets:1},
+                {width:'165px',targets:2},
+                {width:'118px',targets:3},
+                {width:'73px',targets:4},
+                {width:'245px',targets:5},
+                {width:'217px',targets:6},
+                {width:'230px',targets:7},
+                {width:'260px',targets:8},
+            ]);
+        }
+        dateTable.freshTable();
+        i++;
+    }
+
+    //添加信息
+    function addUser(){
+        var length=$("#user_list").find("[name='user_id']").length;
+        if(length>=1){
+            return;
+        }
+        var errms=$("#user_list").find("[name='error']").length;
+        if(errms>0){
+            $("#user_list").empty();
+        }
+        var add_user='<tr><td><input type="text" name="user_id" style="width:53px;color: #ccc;cursor: not-allowed;" value="自动" readonly></td>' +
+                '<td><input type="text" style="width:88px;" name="user_name"></td>' +
+                '<td><input type="password" style="width:265px;" name="password"></td>' +
+                '<td><input type="text" style="width:76px;" name="real_name"></td>' +
+                '<td><input type="text" style="width:53px;" name="age"></td>' +
+                '<td><div id="birth_day" class="input-group date form_date" data-date="">'+
+                '<input id="birthday" name="birthday" style="width: 136px;" placeholder="请选择日期" class="laydate-icon no-active" onClick="laydate({istime: true, format: \'YYYY-MM-DD\'})">'+
+                '</div></td>' +
+                '<td id="head_th_img"><input style="width:101px;" type="file" id="head_url"></td>' +
+                '<td><input type="text"   name="update_time" style="width:165px;color: #ccc;cursor: not-allowed;" readonly></td>' +
+                '<td><input type="button" class="inpt btn btn-primary" style="margin-right: 20px;" onclick="saveUser();" value="保存"><input type="button" class="inpt btn btn-warning" onclick="getUsers();" value="取消"></td></tr>';
+        $("#user_list").append(add_user);
+        $("#head_url").change(function(){
+            uploadImgFunc("head_url",function(data){
+                if(data){
+                    var img = data.filePath + data.msg[0];
+                    var _lt ='<input type="hidden" value="'+img+'" name="head_url"><img src="'+img+'" width="65" height="70">';
+                    $("#head_th_img").empty();
+                    $("#head_th_img").append(_lt);
+                    $("#head_th_img").parent().viewer();
+                }
+            });
+        });
+        $("#user_list").find("[name='update_time']").val(new Date().pattern('yyyy-MM-dd HH:mm:ss'));
+    }
+    function saveUser(){
+        var user_name=$("#user_list").find("[name='user_name']").val();
+        var password=$("#user_list").find("[name='password']").val();
+        var real_name=$("#user_list").find("[name='real_name']").val();
+        var age=$("#user_list").find("[name='age']").val();
+        var birthday=$("#user_list").find("[name='birthday']").val();
+        var head_url = $("#user_list").find("[name='head_url']").val();
+        var update_time=$("#user_list").find("[name='update_time']").val();
+        if(user_name==""||password==""||update_time==""||real_name==""||age==""||birthday==""||head_url==""){
+            openMsgLayer("抱歉，请务必补全信息后再保存！");
+            return;
+        }
+        $.ajax({
+            url:'/admin/addUser',
+            type:'POST',
+            data:{username:user_name,password:password,real_name:real_name,age:age,birthday:birthday,head_url:head_url,update_time:update_time},
+            dataType:'JSON',
+            success:function(result){
+                if(result.error){
+                    openMsgLayer("用户添加失败！");
+                }else{
+                    openMsgLayer("用户添加成功！");
+                    getUsers();
+                }
+            }
+        });
+    }
+    function editUser(obj){
+        var user=obj;
+        console.log(user.id);
+        var date=new Date().pattern('yyyy-MM-dd HH:mm:ss');
+        var edit_page=
+                '<td><input type="text" name="user_id" style="width:53px;color: #ccc;cursor: not-allowed;" value="'+user.id+'" readonly></td>' +
+                '<td><input type="text" style="width:88px;" value="'+user.username+'" name="user_name"></td>' +
+                '<td><input type="password" style="width:265px;" value="'+user.password+'" name="password"></td>' +
+                '<td><input type="text" style="width:76px;" value="'+user.real_name+'" name="real_name"></td>' +
+                '<td><input type="text" style="width:53px;" value="'+user.age+'" name="age"></td>' +
+                '<td>' +
+                '<div id="birth_day" class="input-group date form_date" data-date="">'+
+                '<input id="birthday" value="'+user.birthday+'" name="birthday" style="width: 136px;" placeholder="请选择日期" class="laydate-icon no-active" onClick="laydate({istime: true, format: \'YYYY-MM-DD\'})">'+
+                '</div>' +
+                '</td>' +
+                '<td id="head_th_img"><input type="hidden" value="'+user.head_url+'" name="head_url"><input style="width:101px;" value="'+user.head_url+'"  type="file" id="head_url"></td>' +
+                '<td><input type="text"  value="'+date+'" name="update_time" style="width:165px;color: #ccc;cursor: not-allowed;" readonly></td>' +
+                '<td><input type="button" class="inpt btn btn-primary" style="margin-right: 20px;" onclick=\'editConfirm("'+user.id+'");\' value="保存"><input type="button" class="inpt btn btn-warning" onclick="getUsers();" value="取消"></td>';
+        $("#user"+user.id).empty();
+        $("#user"+user.id).append(edit_page);
+        $("#head_url").change(function(){
+            uploadImgFunc("head_url",function(data){
+                if(data){
+                    var img = data.filePath + data.msg[0];
+                    var _lt ='<input type="hidden" value="'+img+'" name="head_url"><img src="'+img+'" width="65" height="70">';
+                    $("#head_th_img").empty();
+                    $("#head_th_img").append(_lt);
+                    $("#head_th_img").parent().viewer();
+                }
+            });
+        });
+    }
+    //删除
+    function deleteUser(obj){
+        var index=openConfirmLayer('<p>是否要删除此条信息?</p><p style="color: red;">[注意：删除后将不可撤回！]</p>','删除','取消',function(){
+            var user=obj;
+            $.ajax({
+                url:'/admin/deleteUser',
+                type:'POST',
+                data:{id:user.id,head_url:user.head_url},
+                dataType:'JSON',
+                success:function(result){
+                    if(result.error){
+                        openMsgLayer("用户删除失败！");
+                    }else{
+                        openMsgLayer("用户删除成功！");
+                        getUsers();
+                    }
+                }
+            });
+        },function(){
+            closeAlertLayer(index);
+        });
+    }
+    function editConfirm(user_id){
+        var user_name=$("#user_list").find("[name='user_name']").val();
+        var password=$("#user_list").find("[name='password']").val();
+        var real_name=$("#user_list").find("[name='real_name']").val();
+        var age=$("#user_list").find("[name='age']").val();
+        var birthday=$("#user_list").find("[name='birthday']").val();
+        var head_url = $("#user_list").find("[name='head_url']").val();
+        var update_time=$("#user_list").find("[name='update_time']").val();
+        if(user_name==""||password==""||update_time==""||real_name==""||age==""||birthday==""||head_url==""){
+            openMsgLayer("抱歉，请务必补全信息后再保存！");
+            return;
+        }
+        $.ajax({
+            url:'/admin/updateUsers',
+            type:'POST',
+            data:{id:user_id,username:user_name,password:password,real_name:real_name,age:age,birthday:birthday,head_url:head_url,update_time:update_time},
+            dataType:'JSON',
+            success:function(result){
+                if(result.error){
+                    openMsgLayer("信息修改失败！");
+                }else{
+                    openMsgLayer("信息修改成功！");
+                    getUsers();
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

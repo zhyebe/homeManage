@@ -1,0 +1,276 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{overflow-y: auto;/*height:100%;*/}
+body {
+    font-size: 14px;
+    font-family: '微软雅黑';
+    background: rgb(244, 245, 249);
+    background-size: cover;
+    color:#1D0209;
+}
+
+#sel {
+    width: 100%;
+    display: table-cell;
+    position: relative;
+}
+
+#sel-left {
+    min-width: 310px;
+}
+
+.selector {
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 8px;
+    position: relative;
+    float: left;
+}
+
+.selector-left {
+    position: relative;
+    float: left;
+    width: 90px;
+    height: 35px;
+    line-height: 35px;
+    text-align: right;
+}
+
+.selector-right {
+    position: relative;
+    float: right;
+    width: 202px;
+    height: 35px;
+    line-height: 35px;
+}
+
+#sel-right {
+    display: inline-block;
+    width: 108px;
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+#sel2 {
+    display: none;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-top: 1px solid #555d83;
+    /*background-color: #00a000;*/
+}
+
+#sel2 input[type="checkbox"] {
+    margin-left: 12px;
+}
+
+#sel2 .cbCells {
+    float: left;
+    width: 60px;
+}
+
+#res {
+  /*  border-top: 1px solid #ccc;*/
+    /*margin-top: 10px;*/
+    /*background-color: red;*/
+    padding: 10px;
+}
+
+/*table*/
+td.pdf-control {
+    cursor: pointer;
+}
+
+td.pdf-control:hover {
+    background-color: rgba(0,0,0,.1) !important;
+    color: white;
+}
+
+tr.selected >td{
+    background-color: rgba(0,0,0,.1) !important;
+}
+.layui-layer-tips .layui-layer-content{
+    border-radius: 3px !important;
+}
+/**/
+.wrapdiv{padding:15px 25px; width:100%; position: relative; background: rgba(0,0,0,.15);}
+.blkbox{position:relative;height:118px; width:-webkit-calc((100% - 60px)/4); width:-moz-calc((100% - 60px)/4);  width:calc((100% - 60px)/4);margin-right:20px;}
+.blkbox:last-child{margin-right:0; }
+.blkbox1{background: rgba(255,78,141,.2); border:1px solid #754a6c; }
+.blkbox2{background: rgba(61,180,249,.2); border:1px solid #5c759a;}
+.blkbox3{background: rgba(186,124,243,.2); border:1px solid #66649b;}
+.blkbox4{background: rgba(41,245,199,.2);border:1px solid #507573;}
+/*select2*/
+.form-control{background: #fff; color:#503C3C;border:1px solid #87878C;}
+.form-control .select2-choice{background: none;border:1px solid #4b5a74; color:#fff; }
+.select2-container .select2-choice .select2-arrow{background: none;border-left:1px solid #4b5a74; color:#fff;}
+.select2-search input{background-color: rgba(0,0,0,.3)!important;background-repeat: no-repeat; color:#fff;}
+.select2-drop{background: #1e2b40; color:#fff;}
+.select2-search input{border:1px solid #4b5a74; }
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit{background: rgba(224, 224, 224, 0.21);}
+.select2-results .select2-highlighted{background: rgba(0,0,0,.3); color:#fff;}
+/*select2 end*/
+a.rgh_btn_defalut{padding:0 10px; cursor: pointer;}
+.tools span{padding-left:5px;}
+
+.sel_style.w58{width:58px;}
+table.pdl td{padding-left:5px; padding-bottom:7px; line-height: 24px;}
+table.pdl td:nth-child(1),table.pdl td:nth-child(3){text-align: right; width:90px;}
+table.pdl td:last-child{padding-right:5px;}
+#table_tongzhishu{
+    border-right: 1px solid #4d506f;border-bottom: 1px solid #4d506f;margin-left: 10px;
+}
+#table_tongzhishu td{
+    line-height: 24px;border-left: 1px solid #4d506f;border-top:1px solid #4d506f;
+}
+#table_tongzhishu td:nth-child(1),#table_tongzhishu td:nth-child(3){
+    text-align: right;width: 100px;padding-right: 8px;
+}
+#table_tongzhishu td:nth-child(2),#table_tongzhishu td:nth-child(4){
+    text-align: left;width: 230px;padding-left: 8px;
+}
+#table_tongzhishu td.tdTitle{
+    text-align: left;padding-left: 8px;line-height: 28px;
+}
+.mrt10{margin-top:10px;}
+.ver_mid{vertical-align: middle;}
+span.ver_mid{display: inline-block;}
+input[type=radio], input[type=checkbox]{margin:0; }
+input{background: #535658;color: #fff; border: 1px solid #87878C; padding:0 10px;}
+input[type=file]{background: none; border:none; padding:0;}
+.w198{width:198px;}
+.w490{width:490px;  }
+
+/*时间插件*/
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{background: rgba(0,0,0,.3); border:1px solid #87878C;}
+.input-group .input-group-addon{background: rgba(0,0,0,.3); border:1px solid #87878C; border-left:none}
+.glyphicon-calendar{color:#fff;}
+.dropdown-menu{background-color: #1e2b41; color:#fff; border:1px solid #5c66b3;}
+.datetimepicker table tr td.minute:hover{background:rgba(171,171,255,.1);cursor:pointer}.datetimepicker table tr td.hour:hover{background:rgba(171,171,255,.1);cursor:pointer}.datetimepicker table tr td.day:hover{background:rgba(171,171,255,.1);cursor:pointer}
+.datetimepicker table tr td span:hover {
+    background:rgba(171,171,255,.1);
+}
+.datetimepicker thead tr:first-child th:hover,
+.datetimepicker tfoot tr:first-child th:hover {
+    background:rgba(171,171,255,.1);
+}
+
+/*top */
+.blkbox .img{position: absolute; top:5px; left:0;}
+.blkbox span{font-size:26px;line-height: 26px; position: absolute; top:30px; right:20px;}
+.blkbox .bot{height:32px; line-height: 32px;  background: rgba(0,0,0,.2); position: absolute; bottom:0; left:0; width:100%;}
+.blkbox .bot strong,.blkbox .bot em{font-weight: normal; font-style: normal;}
+.blkbox .bot{padding-left:10px;}
+.blkbox .bot strong{padding-left:5px;}
+.blkbox .bot em{position: absolute; right:15px;}
+
+
+.purple.btn{background: #9D9E9E; padding:3px 10px; min-width:100px;}
+.purple.btn:hover{background: #757779;}
+.purple.btn:hover, .purple.btn:focus, .purple.btn:active, .purple.btn.active{
+    background: #757779;
+}
+.bluecol.btn{background: #acacaf; padding:3px 10px; min-width:100px; color:#fff;}
+.bluecol.btn img{margin-top:-2px;}
+.bluecol.btn:hover{background: #576b99; color:#fff;}
+.bluecol i{margin-right:5px;}
+
+.bluecol2.btn{background: #6d86bf; padding:3px 3px; min-width:30px; color:#fff;}
+.bluecol2.btn img{margin-top:-2px;}
+.bluecol2.btn:hover{background: #576b99; color:#fff;}
+.bluecol2 i{margin-right:5px;}
+/*表格*/
+.portlet > .portlet-body.blue-hoki, .portlet.blue-hoki,.portlet.box > .portlet-body,.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th{background: none;}
+.portlet.box > .portlet-body{border: 1px solid #ACACAF;}
+.portlet.box.blue-hoki{ border: none;box-shadow: 1px 1px 10px rgba(255,255,255,.3);}
+.portlet.box.blue-hoki > .portlet-title{background: rgba(0,0,0,.3); border: 1px solid #ACACAF; border-bottom: none;}
+.portlet.box > .portlet-title{border-bottom:1px solid #656e85;}
+.table-bordered,.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{border:1px solid #656e85; text-align: center;}
+.table>thead:first-child>tr:first-child>th{background: #4b536f; text-align: center; font-weight: normal; vertical-align: middle;}
+.table.thbg>thead:first-child>tr:first-child>th{background: rgba(0,0,0,.4); text-align: center; font-weight: normal;}
+/*分页*/
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus{background: rgba(0,0,0,.3);color:#fff; border:1px solid #656e85;}
+ .pagination .active > a, .pagination .active > a:hover{background:rgba(0,0,0,.1); border:1px solid #656e85;}
+.pagination>li>a, .pagination>li>span{background:rgba(0,0,0,.3);border:1px solid #656e85; color:#fff;}
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{background:rgba(0,0,0,.1);border:1px solid #656e85; color:#fff;}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{background:rgba(0,0,0,.5);border:1px solid #656e85; color:#fff;}
+/*更多条件*/
+.bootstrap-switch .bootstrap-switch-label{background: rgba(0,0,0,.3);}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default{background: rgba(0,0,0,.5); color:#fff;}
+.bootstrap-switch{border-color:#545c7f;}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary{background: rgba(0,0,0,.5);}
+.bootstrap-switch.bootstrap-switch-focused{border-color:#999;}
+
+/*弹窗-选项卡*/
+.tabbable-line > .nav-tabs{background: rgba(0,0,0,.3);border-bottom:1px solid #47566e;}
+.tabbable-line > .tab-content{background:none; border-top:none;margin-top:0;}
+.tabbable-line > .nav-tabs > li{border-right:1px solid #47566e; margin-right: 0;}
+.tabbable-line > .nav-tabs > li > a{ color:#a7adbe; height:40px; padding:0 15px; line-height: 40px; font-size:14px;}
+.tabbable-line > .nav-tabs > li:hover a{color:#fff;}
+.tabbable-line > .nav-tabs > li:hover,.tabbable-line > .nav-tabs > li.active{border-bottom:none;}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus{background: #22334a!important;/*border-bottom:1px solid #22334a; */color:#fff!important; height:40px;}
+
+
+.btn-default{background: rgba(255,255,255,.1);border:1px solid #47566e; color:#fff;}
+.btn-default:hover, .btn-default:focus{background: rgba(255,255,255,.2);border:1px solid #47566e; color:#fff;}
+.btn-default:active, .btn-default.active{background: rgba(0,0,0,.3); border:1px solid #47566e; color:#fff;}
+/**/
+.portlet.box > .portlet-title{padding:0 0 0 10px; height:40px; line-height: 40px;}
+.portlet.box > .portlet-title > .actions{padding:0;}
+.actions span{padding-left:5px;}
+.portlet.box > .portlet-title > .caption{/*padding:10px 0; */padding:0;font-size:16px; line-height: 40px; height:40px;}
+.portlet.box > .portlet-title > .caption  img{margin-top:-3px;}
+.portlet > .portlet-title > .caption > i{margin-top: 2px;}
+/*刷新导出btn*/
+.actions a{padding:0 14px 0 32px;}
+a.refresh_btn{background: url("/epolice/images/icon/refresh_icon.png") no-repeat 10px center;}
+a.refresh_btn:hover{background: rgba(0,0,0,.3)  url("/epolice/images/icon/refresh_icon_hover.png") no-repeat 10px center;}
+a.export_btn{background: url("/epolice/images/icon/export_icon.png") no-repeat 10px center;}
+a.export_btn:hover{background:rgba(0,0,0,.3)   url("/epolice/images/icon/export_icon_hover.png") no-repeat 10px center;}
+
+a.btn_arrangement{background: url("/epolice/images/icon/arrangement_icon.png") no-repeat 5px center;}
+a.btn_arrangement:hover{background: rgba(0,0,0,.3)  url("/epolice/images/icon/arrangement_icon_hover.png") no-repeat 5px center;}
+a.btn_examine{background: url("/epolice/images/icon/examine_icon.png") no-repeat 5px center;}
+a.btn_examine:hover{background: rgba(0,0,0,.3)  url("/epolice/images/icon/examine_icon_hover.png") no-repeat 5px center;}
+a.btn_admin{background: url("/epolice/images/icon/admin_icon.png") no-repeat 5px center;}
+a.btn_admin:hover{background: rgba(0,0,0,.3)  url("/epolice/images/icon/admin_icon_hover.png") no-repeat 5px center;}
+
+
+
+div.dataTables_wrapper div.dataTables_length select option{background: #1e2b41;}
+
+/*整理下拉*/
+.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover{background-color:rgba(0,0,0,.3);}
+.dropdown-menu li > a i{margin-right:5px;}
+
+.portlet.box.blue-hoki > .portlet-title > .caption{color:#a7adbe;}
+.dropdown-menu li > a img{margin-top:-2px;width:15px;}
+
+.cbCells input{vertical-align: middle; margin-right:2px;}
+.cbCells span{vertical-align: middle; display: inline-block;}
+#span_wfnr{margin-left:5px;}
+.portlet-body table {
+    table-layout: fixed;
+    width: 100% !important;
+}
+.portlet-body table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

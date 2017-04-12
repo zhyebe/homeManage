@@ -1,0 +1,53 @@
+/*修改插件样式*/
+.ptzBottom .irs-line-mid,
+.ptzBottom .irs-line-left,
+.ptzBottom .irs-line-right,
+.ptzBottom .irs-diapason{
+    /*background:#282b30 !important;*/
+
+}
+.ptzBottom .irs-slider {
+    cursor: pointer;
+    /*background:#ff0000 !important;*/
+    background: url("/video/ptzControl/images/blue/ptzControl/speed_slider.png") !important;
+    /*width: 35px !important;
+    height: 14px !important; top: 23px !important;*/
+    width:46px; height:17px;
+    top: 21px;
+    border:0px solid #fefefe !important;
+}
+.ptzBottom .irs-slider:hover{ background: url("/video/ptzControl/images/blue/ptzControl/speed_slider2.png") !important;}
+.ptzBottom .irs-line-left,
+.ptzBottom .irs-line-mid,
+.ptzBottom .irs-line-right{
+    /*height: 8px;*/height:10px;
+}
+.ptzBottom .irs-line {
+   /* height: 8px;*/
+    height: 10px;
+    top: 25px;
+    background:url("/video/ptzControl/images/blue/ptzControl/slider_bg.png") no-repeat;
+    width:192px;
+}
+.ptzBottom .irs-min,
+.ptzBottom .irs-max {
+    color: #999;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    top: 0;
+    padding: 1px 3px;
+    /*background: rgba(0,0,0,0.1);*/
+    /*border-radius: 0;*/
+}
+.ptzBottom .irs-from,
+.ptzBottom .irs-to,
+.ptzBottom .irs-single {
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    padding: 1px 5px;
+    /*background: rgba(0,0,0,0.3);*/
+    /*border-radius: 3px;*/
+}

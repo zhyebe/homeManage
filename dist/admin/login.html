@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台登陆</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+<div class="page">
+    <div class="loginwarrp">
+        <div class="logo">登陆</div>
+        <div class="login_form">
+            <form id="form" name="Login">
+                <li class="login-item">
+                    <span>用户名：</span>
+                    <input type="text" id="username" placeholder="请输入用户名" onkeyup='this.value=this.value.replace(/^([\u4e00-\u9fa5]|\W)*$/gi,"")' name="username" class="login_input">
+                </li>
+                <li class="login-item">
+                    <span>密　码：</span>
+                    <input type="password" placeholder="请输入6~12位密码" id="password" size="12" maxlength="12" name="password" class="login_input">
+                </li>
+                <li class="login-item verify">
+                    <span>验证码：</span>
+                    <input type="text" id="code" placeholder="请输入6位验证码" size="6" maxlength="6" onkeyup='this.value=this.value.replace(/\D/gi,"")' name="code" class="login_input verify_input">
+                </li>
+                <img id="valicode"  src="" onclick="loadCode();" border="1" class="verifyimg" />
+                <div class="clearfix"></div>
+                <li class="login-sub">
+                    <input type="button" onclick="login();" name="Submit" value="登录" />
+                </li>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Mainly scripts -->
+<script src="/utils/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/utils/layer/layer.js"></script>
+<script type="text/javascript" src="/common/js/config.js"></script>
+<script type="text/javascript" src="/common/js/dialog.js"></script>
+<script>
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==CONFIG.ENTERKEY){
+            login();
+        }
+    };
+    $(function(){
+        loadCode();
+    });
+    //加载验证码
+    function loadCode(){
+        $.ajax({
+            url:'/admin/login/getCode',
+            type:'post',
+            dataType:'JSON',
+            success: function(result) {
+                $("#valicode").attr('src','data:image/jpg;base64,'+result.code);
+            }
+        });
+    }
+    function login(){
+        if($("#username").val()==''){
+            openMsgLayer('请输入用户名！');
+            return;
+        }
+        if($("#password").val()==''){
+            openMsgLayer('请输入密码！');
+            return;
+        }
+        if($("#code").val()==''){
+            openMsgLayer('请输入验证码！');
+            return;
+        }
+        $.ajax({
+            url:'/admin/login/toLogin',
+            type:'post',
+            data:$("#form").serialize(),
+            dataType:'JSON',
+            success: function(result) {
+                if(result.status=='1'){
+                    window.location.href=result.url;
+                }else{
+                    openMsgLayer(result.msg);
+                    $("#password").val('')
+                    $("#code").val('');
+                    loadCode();
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

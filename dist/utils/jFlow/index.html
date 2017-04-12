@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script type="text/javascript" src="../jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="jquery.flow.1.2.auto.js"></script>
+<script type="text/javascript">
+$(function(){
+//	$("#myController").jFlow({
+//		slides: "#slides",
+//		controller: ".jFlowControl", 
+//		slideWrapper : "#jFlowSlide", 
+//		selectedWrapper: "jFlowSelected",  
+//		width: "680px",
+//		height: "275px"
+//	}); 
+	
+	$("#myController1").jFlow({
+		slides: "#slides1",
+		controller: ".jFlowControl1", 
+		slideWrapper : "#jFlowSlide1", 
+		selectedWrapper: "jFlowSelected1", 
+		auto: true,
+		duration: 600,
+		width: "100%",
+		height: "500px",
+		prev: ".jPrev", 
+		next: ".jNext" 
+	});
+	
+//	$("#myController2").jFlow({
+//		slides: "#slides2",
+//		controller: ".jFlowControl2", 
+//		slideWrapper : "#jFlowSlide2", 
+//		width: "680px",
+//		height: "275px",
+//		prev: ".arrL", 
+//		next: ".arrR" 
+//	});
+});
+</script>
+</head>
+
+<body>
+<!--<div id="header">
+   <div id="logo"><h1><a href="http://www.helloweba.com" title="返回helloweba首页">helloweba</a></h1></div>
+</div>-->
+<div id="main">
+<!--<h2 class="top_title"><a href="http://www.helloweba.com/view-blog-42.html">jFlow：jQuery内容滑动特效插件的应用</a></h2>-->
+<!--<div class="page_title">1、TAB滑动切换</div>
+<div class="demo">
+   <ul id="myController">
+      <li class="jFlowPrev"></li>
+      <li class="jFlowControl">服务</li>
+      <li class="jFlowControl">案例</li>
+      <li class="jFlowControl">文章</li>
+      <li class="jFlowNext"></li>
+   </ul>
+   <div id="slides">
+      <div class="slide_wrap">
+        <div class="server">
+           <div class="ser_img"><a href="http://www.helloweba.com/webdesign.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100413165657861.gif" alt="网站设计与开发" /></a></div>
+           <div class="ser_txt">
+              <h3><a href="http://www.helloweba.com/webdesign.html" target="_blank">网站设计与开发</a></h3>
+              <p>我们根据最新的WEB标准和要求设计和开发网站。我们专注于最终用户的体验和目标。</p>
+           </div>
+        </div>
+        <div class="server">
+           <div class="ser_img"><a href="http://www.helloweba.com/ui.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100413165717311.gif" alt="用户界面设计（UI）" /></a></div>
+           <div class="ser_txt">
+              <h3><a href="http://www.helloweba.com/ui.html" target="_blank">用户界面设计（UI）</a></h3>
+              <p>我们注重网站UI设计，以符合客户的行业、身份及受众。我们遵循WEB标准，设计高质量的网站。</p>
+           </div>
+        </div>
+        <div class="server">
+           <div class="ser_img"><a href="http://www.helloweba.com/web-front.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100430171810111.gif" alt="WEB前端交互设计" /></a></div>
+           <div class="ser_txt">
+              <h3><a href="http://www.helloweba.com/web-front.html" target="_blank">WEB前端交互设计</a></h3>
+              <p>我们使用Javascript技术以及jQuery库和Ajax控制页面的交互行为、动画效果等，使网站更具友好性和亲和力。</p>
+           </div>
+        </div>
+        <div class="server">
+           <div class="ser_img"><a href="http://www.helloweba.com/xhtml-css.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100430171942131.gif" alt="XHTML/CSS设计" /></a></div>
+           <div class="ser_txt">
+              <h3><a href="http://www.helloweba.com/xhtml-css.html" target="_blank">XHTML/CSS设计</a></h3>
+              <p>我们遵循切片规则，XHTML和CSS命名规范，语义化的标签，完全符合W3C标准的代码结构。</p>
+           </div>
+        </div>
+      </div>
+      <div class="slide_wrap">
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-36.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100730093157205.jpg" alt="株洲南方阀门" /></a>
+        </div>
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-22.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100723100818245.jpg" alt="湖南翎讯网络信息有限公司" /></a>
+        </div>
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-19.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100803145844413.jpg" alt="乐扣网-二维码电子商务平台" /></a>
+        </div>
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-8.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100428170827974.jpg" alt="东莞市基源科技开发有限公司" /></a>
+        </div>
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-7.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100428165837939.jpg" alt="深圳市玫瑰石科技有限公司" /></a>
+        </div>
+        <div class="case">
+           <a href="http://www.helloweba.com/view-case-3.html" target="_blank"><img src="http://www.helloweba.com/attachments/20100413143439685.jpg" alt="Angel mannequin" /></a>
+        </div>
+      </div>
+      <div class="slide_wrap">
+        <ul class="blog">
+           <li><a href="http://www.helloweba.com/view-blog-41.html" target="_blank">Open Flash Chart + PHP + Mysql生成动态图表</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-40.html" target="_blank">Open Flash Chart 超强的图表生成组件</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-38.html" target="_blank">图片放大镜-Cloud Zoom</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-35.html" target="_blank">CU3ER：神奇惊人的3D图片切换效果</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-32.html" target="_blank">WAMP5的配置问题</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-31.html" target="_blank">让IE6更快的走向灭亡</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-37.html" target="_blank">大型网站架构不得不考虑的10个问题</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-39.html" target="_blank">悟道web标准：前端性能优化</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-38.html" target="_blank">图片放大镜-Cloud Zoom</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-35.html" target="_blank">CU3ER：神奇惊人的3D图片切换效果</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-32.html" target="_blank">WAMP5的配置问题</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-31.html" target="_blank">让IE6更快的走向灭亡</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-41.html" target="_blank">Open Flash Chart + PHP + Mysql生成动态图表</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-40.html" target="_blank">Open Flash Chart 超强的图表生成组件</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-38.html" target="_blank">图片放大镜-Cloud Zoom</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-35.html" target="_blank">CU3ER：神奇惊人的3D图片切换效果</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-32.html" target="_blank">WAMP5的配置问题</a></li>
+           <li><a href="http://www.helloweba.com/view-blog-31.html" target="_blank">让IE6更快的走向灭亡</a></li>
+        </ul>
+      </div>
+   </div>
+</div>-->
+
+<!--<div class="page_title">2、数字导航滑动自动切换</div>-->
+<div class="demo">
+   <div id="slides1">
+      <div class="slide_wrap">
+        <img src="images/s1.jpg" alt="" />
+      </div>
+      <div class="slide_wrap">
+        <img src="images/s2.jpg" alt="" />
+      </div>
+      <div class="slide_wrap">
+        <img src="images/s3.jpg" alt="" />
+      </div>
+   </div>
+   <div id="myController1">
+      <span class="jPrev">&lt;</span>
+      <span class="jFlowControl1">1</span>
+      <span class="jFlowControl1">2</span>
+      <span class="jFlowControl1">3</span>
+      <span class="jNext">&gt;</span>
+   </div>
+</div>
+
+<!--<div class="page_title">3、方向按钮导航滑动切换</div>
+<div class="demo">
+   <div id="slides2">
+      <div class="slide_wrap">
+        <img src="images/s2.jpg" alt="" />
+     </div>
+      <div class="slide_wrap">
+        <img src="images/s3.jpg" alt="" />
+      </div>
+      <div class="slide_wrap">
+        <img src="images/s1.jpg" alt="" />
+      </div>
+  </div>
+  <div class="arrL" title="上一张"></div>
+  <div class="arrR" title="下一张"></div>
+  <div id="myController2">
+      <span class="jFlowControl2">1</span>
+      <span class="jFlowControl2">2</span>
+      <span class="jFlowControl2">3</span>
+   </div>
+</div>-->
+<br/>
+</div>
+<!--<div id="footer">
+    <p>Powered by helloweba.com  允许转载、修改和使用本站的DEMO，但请注明出处：<a href="http://www.helloweba.com">www.helloweba.com</a></p>
+</div>-->
+<p id="stat"><script type="text/javascript" src="http://js.tongji.linezing.com/1870888/tongji.js"></script></p>
+</body>
+</html>

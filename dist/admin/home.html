@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        *,body{
+            font-family: '微软雅黑';
+        }
+    </style>
+</head>
+<body>
+<div class="public-header-warrp">
+    <div class="public-header">
+        <div class="content">
+            <div class="public-header-logo">
+                <a href="/admin">
+                    <img style="float: left;" width="66" height="55" src="/common/images/yeehome.jpg">
+                    <h3 style="background: #EB5644;font-family: '黑体';color:#fff;padding: 1px 3px;position: absolute;top: 28px;">我</h3>
+                    <h3 style="background: #EB5644;font-family: '黑体';color:#fff;padding: 1px 3px;top: 46px;left: 76px; position: absolute;">家</h3>
+                </a>
+            </div>
+            <div class="public-header-admin fr">
+                <div class="public-header-fun fr">
+                    <p class="admin-name">
+                        <span style="font-size:16px;color: #53afb7;">[<$=user.level$>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span style="font-size: 18px;font-weight: 600;color: #eb7e7b;"><$=user.user_name$></span>，<$=user.greeting$>，欢迎使用！
+                    </p>
+                    <a href="/admin/logout" class="public-header-loginout">安全退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- 内容展示 -->
+<div class="public-ifame mt20">
+    <div class="content">
+        <!-- 内容模块头 -->
+        <div class="public-ifame-header">
+            <ul data-ng-app="timeApp" data-ng-controller="timeCtrl">
+                <li class="ifame-item logo">
+                    <div class="item-warrp">
+                        <img style="float: left;" src="/common/images/set.jpg" width="30" height="30"><span style="font-family: '微软雅黑';" class="logo-title">后台管理</span>
+                    </div>
+                </li>
+                <li class="ifame-item"><div class="item-warrp"><span>【日期】：<span id="now_date">{{now_dater}}</span></span></div></li>
+                <li class="ifame-item"><div class="item-warrp"><span>【时间】：<span id="now_time">{{now_timer}}</span></span></div></li>
+                <div class="clearfix"></div>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <!-- 左侧导航栏 -->
+        <div id="home_menu" class="public-title-warrp" title="功能菜单">
+            <div class="public-ifame-title ">
+                <i class="main_icon"></i>
+            </div>
+        </div>
+        <div id="home_title" class="public-ifame-leftnav">
+            <div class="public-title-warrp">
+                <div class="public-ifame-title " id="home_menu_func">
+                    <a><i class="fun-icon"></i>功能菜单</a>
+                </div>
+            </div>
+            <ul class="left-nav-list">
+                <li class="public-ifame-item">
+                    <a href="javascript:;" class="item-a">人员信息管理</a>
+                    <div class="ifame-item-sub">
+                        <ul>
+                            <li><a href="/admin/src/main" target="content">用户信息</a></li>
+                            <li><a href="/admin/src/importance" target="content">重要信息</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="public-ifame-item">
+                    <a href="javascript:;" class="item-a">生活信息管理</a>
+                    <div class="ifame-item-sub">
+                        <ul>
+                            <li><a href="/admin/src/body" target="content">身体信息</a></li>
+                            <li><a href="/admin/src/healthy" target="content">身心健康</a></li>
+                            <li><a href="/admin/src/life" target="content">饮食起居</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="public-ifame-item">
+                    <a href="javascript:;" class="item-a">健康发展趋势</a>
+                    <div class="ifame-item-sub">
+                        <ul>
+                            <li><a href="/admin/src/bloodPressureChart" target="content">血压趋势图</a></li>
+                            <li><a href="/admin/src/heartChart" target="content">心率趋势图</a></li>
+                            <li><a href="/admin/src/sportChart" target="content">运动趋势图</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- <li class="public-ifame-item">
+                    <a href="javascript:;" class="item-a">多媒体信息管理</a>
+                    <div class="ifame-item-sub">
+                        <ul>
+                            <li><a href="/admin/src/photo" target="content">生活相册</a></li>
+                            <li><a href="/admin/src/video" target="content">视频锦集</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="public-ifame-item">
+                    <a href="javascript:;" class="item-a">上传管理</a>
+                    <div class="ifame-item-sub">
+                        <ul>
+                            <li><a href="/admin/src/uploadPhoto" target="content">生活相册上传</a></li>
+                            <li><a href="/admin/src/uploadVideo" target="content">视频锦集上传</a></li>
+                        </ul>
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+        <!-- 右侧内容展示部分 -->
+        <div class="public-ifame-content">
+            <iframe src="/admin/src/main" name="content" id="right_frame" frameborder="0" id="mainframe" scrolling="yes" marginheight="0" marginwidth="0" width="100%" style="height: 804px;"></iframe>
+        </div>
+    </div>
+</div>
+<script src="/utils/jquery/dist/jquery.min.js"></script>
+<script src="/common/js/angular.min.js"></script>
+<script src="/common/js/dateUtils.js"></script>
+<script type="text/javascript">
+    //获取当前时间并拼接放到div中的函数
+    angular.module("timeApp", [])
+            .controller('timeCtrl',function($scope,$interval){
+                $scope.now_dater= new Date().pattern('yyyy年MM月dd日');
+                $scope.now_timer=new Date().toLocaleTimeString();
+                $interval(function(){
+                    $scope.now_timer=new Date().toLocaleTimeString();
+                },1000);
+            });
+</script>
+<script>
+    $(document).ready(function(){
+        var item = $(".public-ifame-item");
+        for(var i=0; i < item.length; i++){
+            $(item[i]).on('click',function(evt){
+                evt.stopPropagation();
+                $(".ifame-item-sub").hide('slow');
+                if($(this.lastElementChild).css('display') == 'block'){
+                    $(this.lastElementChild).hide('slow')
+                    $(".ifame-item-sub li").removeClass("active");
+                }else{
+                    $(this.lastElementChild).show('slow');
+                    $(".ifame-item-sub li").on('click',function(e){
+                        e.stopPropagation();
+                        $(".ifame-item-sub li").removeClass("active");
+                        $(this).addClass("active");
+                    });
+                }
+            });
+        }
+        //功能菜单控制
+        var mouseIndex = false;
+        $("#home_menu").mouseenter(function(){
+            $(this).animate({left:0});
+            $("#home_menu_func").animate({paddingLeft:32});
+            $("#home_title").animate({left:0},'slow');
+            $(".main_icon").css({"background-position":'-72px 0'});
+            $("#home_menu").attr("title","点击收回菜单");
+        });
+        $("#home_menu").mouseleave(function(){
+            $(this).animate({left:-18});
+            $("#home_menu_func").animate({paddingLeft:20});
+        });
+        $("#home_menu").click(function(){
+            $(".main_icon").css({"background-position":'-90px 0'});
+            $("#home_title").animate({left:-185},'slow');
+        });
+    });
+</script>
+</body>
+</html>
