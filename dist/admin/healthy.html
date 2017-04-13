@@ -135,7 +135,8 @@
             return;
         }
         var errms=$("#blood_list").find("[name='error']").length;
-        if(errms>0){
+		var errsms = $($("#blood_list").find('td')[0]).text();
+        if(errms>0||errsms.indexOf('表中数据为空')!=-1){
             $("#blood_list").empty();
         }
         var add_blood='<tr><td><input type="text" name="blood_id" style="width:37px;color: #ccc;cursor: not-allowed;" value="自动" readonly></td>' +

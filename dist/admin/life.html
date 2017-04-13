@@ -166,8 +166,8 @@
         if(length>=1){
             return;
         }
-        var errms=$("#life_list").find("[name='error']").length;
-        if(errms>0){
+        var errsms = $($("#life_list").find('td')[0]).text();
+        if(errms>0||errsms.indexOf('表中数据为空')!=-1){
             $("#life_list").empty();
         }
         var add_life='<tr><td><input type="text" name="life_id" style="width:40px;color: #ccc;cursor: not-allowed;" value="自动" readonly></td>' +

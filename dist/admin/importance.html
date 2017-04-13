@@ -142,8 +142,8 @@
         if(length>=1){
             return;
         }
-        var errms=$("#user_list").find("[name='error']").length;
-        if(errms>0){
+		var errsms = $($("#user_list").find('td')[0]).text();
+        if(errms>0||errsms.indexOf('表中数据为空')!=-1){
             $("#user_list").empty();
         }
         var add_user='<tr><td><input type="text" name="user_id" style="width:67px;color: #ccc;cursor: not-allowed;" value="自动生成序号" readonly></td>' +
