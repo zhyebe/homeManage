@@ -10,7 +10,6 @@ module.exports = {
         hostip: '127.0.0.1',
         webPort: 3006
     },
-
     mysql: {
         host     : '192.168.1.233',
         user     : '5fec19ba692c4',
