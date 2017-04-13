@@ -15,7 +15,7 @@ module.exports = {
         user     : '5fec19ba692c4',
         password : '62d5992dff834',
         port: '30084',
-        database: '5fec19ba692c4',
+        database: '154d972bdada4',
     },
     ROUTER_URL:[
         {routerKey:'/',routerValue:'./router/index'},
