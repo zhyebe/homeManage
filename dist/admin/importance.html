@@ -142,6 +142,7 @@
         if(length>=1){
             return;
         }
+		var errms = $("#user_list").find("[name='error']").length;
 		var errsms = $($("#user_list").find('td')[0]).text();
         if(errms>0||errsms.indexOf('表中数据为空')!=-1){
             $("#user_list").empty();
