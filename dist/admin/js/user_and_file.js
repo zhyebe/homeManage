@@ -12,13 +12,14 @@ window.onload = function(){
         fileUploader.onchange = fileUploaderChangeHandler;
     }
     function fileUploaderChangeHandler(){
-        uploadImgFunc("FileUploader",function(data){
-            if(data){
-                var img = data.filePath + data.msg[0];
-                $("#head_img").attr("src",img);
-                $("#PathDisplayer").val(img);
-            }
-        });
+        //uploadImgFunc("FileUploader",function(data){
+          //  if(data){
+            //    var img = data.filePath + data.msg[0];
+              //  $("#head_img").attr("src",img);
+              //  $("#PathDisplayer").val(img);
+           // }
+        //});
+		$("#PathDisplayer").val('/upload/img/2017-03-20_C4BF92E9.jpg');
     }
     function fileUploaderClickHandler(){
         setTimeout(function(){

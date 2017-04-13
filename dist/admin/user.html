@@ -53,7 +53,7 @@
             <label class="col-sm-1 control-label">头像</label>
             <img id="head_img" style="float: left;cursor: pointer;" <$if(user.head_url&&user.head_url!=''){$>src="<$=user.head_url$>"<$}else{$>src="/admin/images/home.png"<$}$> width="150" height="180">
             <div class="col-sm-3 file-uploader-wrap" style="float: left;">
-                <input type="file" class="file-uploader form-control no-active" name="uploadDataField" id="FileUploader"/>
+                <input type="file" class="file-uploader form-control" disabled name="uploadDataField" id="FileUploader"/>
                 <div class="file-uploader-wrap-fake">
                     <input type="text"  value="<$=user.head_url$>" name="head_url" id="PathDisplayer" style="width: 187%" placeholder="上传头像" class="input-text form-control" disabled />
                     <a href="javascript:void(0)" class="link-btn" >选择文件</a>
